@@ -8,7 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		1CD169081C6A23550026FB82 /* mangopay.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 1CD169071C6A23550026FB82 /* mangopay.h */; };
-		1CD1690A1C6A23550026FB82 /* mangopay.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CD169091C6A23550026FB82 /* mangopay.m */; };
+		1CD169111C6A23BE0026FB82 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1CD169101C6A23BE0026FB82 /* UIKit.framework */; };
+		1CD169131C6A24420026FB82 /* mangopay.h in Headers */ = {isa = PBXBuildFile; fileRef = 1CD169071C6A23550026FB82 /* mangopay.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1CD169181C6A284E0026FB82 /* NetworkRequests.h in Headers */ = {isa = PBXBuildFile; fileRef = 1CD169161C6A284E0026FB82 /* NetworkRequests.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1CD169191C6A284E0026FB82 /* NetworkRequests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CD169171C6A284E0026FB82 /* NetworkRequests.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -27,7 +30,10 @@
 /* Begin PBXFileReference section */
 		1CD169041C6A23550026FB82 /* libmangopay.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libmangopay.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		1CD169071C6A23550026FB82 /* mangopay.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = mangopay.h; sourceTree = "<group>"; };
-		1CD169091C6A23550026FB82 /* mangopay.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = mangopay.m; sourceTree = "<group>"; };
+		1CD169101C6A23BE0026FB82 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		1CD169151C6A26870026FB82 /* Info */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Info; sourceTree = "<group>"; };
+		1CD169161C6A284E0026FB82 /* NetworkRequests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetworkRequests.h; sourceTree = "<group>"; };
+		1CD169171C6A284E0026FB82 /* NetworkRequests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetworkRequests.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -35,6 +41,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1CD169111C6A23BE0026FB82 /* UIKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -44,7 +51,9 @@
 		1CD168FB1C6A23550026FB82 = {
 			isa = PBXGroup;
 			children = (
+				1CD169151C6A26870026FB82 /* Info */,
 				1CD169061C6A23550026FB82 /* mangopay */,
+				1CD169141C6A25200026FB82 /* Frameworks */,
 				1CD169051C6A23550026FB82 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -61,12 +70,33 @@
 			isa = PBXGroup;
 			children = (
 				1CD169071C6A23550026FB82 /* mangopay.h */,
-				1CD169091C6A23550026FB82 /* mangopay.m */,
+				1CD169161C6A284E0026FB82 /* NetworkRequests.h */,
+				1CD169171C6A284E0026FB82 /* NetworkRequests.m */,
 			);
 			path = mangopay;
 			sourceTree = "<group>";
 		};
+		1CD169141C6A25200026FB82 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1CD169101C6A23BE0026FB82 /* UIKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		1CD169121C6A241A0026FB82 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1CD169131C6A24420026FB82 /* mangopay.h in Headers */,
+				1CD169181C6A284E0026FB82 /* NetworkRequests.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
 		1CD169031C6A23550026FB82 /* mangopay */ = {
@@ -76,6 +106,7 @@
 				1CD169001C6A23550026FB82 /* Sources */,
 				1CD169011C6A23550026FB82 /* Frameworks */,
 				1CD169021C6A23550026FB82 /* CopyFiles */,
+				1CD169121C6A241A0026FB82 /* Headers */,
 			);
 			buildRules = (
 			);
@@ -122,7 +153,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1CD1690A1C6A23550026FB82 /* mangopay.m in Sources */,
+				1CD169191C6A284E0026FB82 /* NetworkRequests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
