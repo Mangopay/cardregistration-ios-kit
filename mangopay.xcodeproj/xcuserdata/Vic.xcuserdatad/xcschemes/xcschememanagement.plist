@@ -4,6 +4,11 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>Framework.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>2</integer>
+		</dict>
 		<key>mangopay.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
@@ -12,6 +17,11 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>1C6FD51B1C6D322100B2B64C</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>1CD169031C6A23550026FB82</key>
 		<dict>
 			<key>primary</key>
