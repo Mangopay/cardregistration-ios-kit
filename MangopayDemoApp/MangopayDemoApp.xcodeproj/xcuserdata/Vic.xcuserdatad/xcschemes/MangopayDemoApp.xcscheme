@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0720"
+   LastUpgradeVersion = "0730"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -11,13 +11,14 @@
             buildForRunning = "YES"
             buildForProfiling = "YES"
             buildForArchiving = "YES"
-            buildForAnalyzing = "YES">
+            buildForAnalyzing = "YES"
+            hideIssues = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "1CD169031C6A23550026FB82"
-               BuildableName = "libmangopay.a"
-               BlueprintName = "mangopay"
-               ReferencedContainer = "container:mangopay.xcodeproj">
+               BlueprintIdentifier = "1C6FD4F21C6D2CAF00B2B64C"
+               BuildableName = "MangopayDemoApp.app"
+               BlueprintName = "MangopayDemoApp"
+               ReferencedContainer = "container:MangopayDemoApp.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -29,6 +30,15 @@
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
       </Testables>
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "1C6FD4F21C6D2CAF00B2B64C"
+            BuildableName = "MangopayDemoApp.app"
+            BlueprintName = "MangopayDemoApp"
+            ReferencedContainer = "container:MangopayDemoApp.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </TestAction>
@@ -42,15 +52,16 @@
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES">
-      <MacroExpansion>
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "1CD169031C6A23550026FB82"
-            BuildableName = "libmangopay.a"
-            BlueprintName = "mangopay"
-            ReferencedContainer = "container:mangopay.xcodeproj">
+            BlueprintIdentifier = "1C6FD4F21C6D2CAF00B2B64C"
+            BuildableName = "MangopayDemoApp.app"
+            BlueprintName = "MangopayDemoApp"
+            ReferencedContainer = "container:MangopayDemoApp.xcodeproj">
          </BuildableReference>
-      </MacroExpansion>
+      </BuildableProductRunnable>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>
@@ -60,15 +71,16 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
-      <MacroExpansion>
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "1CD169031C6A23550026FB82"
-            BuildableName = "libmangopay.a"
-            BlueprintName = "mangopay"
-            ReferencedContainer = "container:mangopay.xcodeproj">
+            BlueprintIdentifier = "1C6FD4F21C6D2CAF00B2B64C"
+            BuildableName = "MangopayDemoApp.app"
+            BlueprintName = "MangopayDemoApp"
+            ReferencedContainer = "container:MangopayDemoApp.xcodeproj">
          </BuildableReference>
-      </MacroExpansion>
+      </BuildableProductRunnable>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">

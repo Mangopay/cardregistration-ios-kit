@@ -6,3 +6,4 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <mangopay/ServerCommunications.h>

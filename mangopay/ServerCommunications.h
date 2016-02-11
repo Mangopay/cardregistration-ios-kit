@@ -9,6 +9,7 @@
 
 @interface ServerCommunications : NSObject
 
-+ (void)executeMethod:(NSString*)method withBody:(NSData*)body withURL:(NSURL*)URL completion:(void (^)(NSData *data, NSURLResponse *response, NSError *error)) completionHandler;
+- (void)getInfoWithLanguage:(NSString*)language email:(NSString*)email currency:(NSString*)currency;
+
 
 @end

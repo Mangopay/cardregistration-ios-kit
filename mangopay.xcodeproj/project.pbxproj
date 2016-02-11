@@ -34,6 +34,7 @@
 		1CD169151C6A26870026FB82 /* Info */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Info; sourceTree = "<group>"; };
 		1CD169161C6A284E0026FB82 /* ServerCommunications.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServerCommunications.h; sourceTree = "<group>"; };
 		1CD169171C6A284E0026FB82 /* ServerCommunications.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServerCommunications.m; sourceTree = "<group>"; };
+		1CD1691A1C6A44860026FB82 /* Junk */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Junk; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,6 +53,7 @@
 			isa = PBXGroup;
 			children = (
 				1CD169151C6A26870026FB82 /* Info */,
+				1CD1691A1C6A44860026FB82 /* Junk */,
 				1CD169061C6A23550026FB82 /* mangopay */,
 				1CD169141C6A25200026FB82 /* Frameworks */,
 				1CD169051C6A23550026FB82 /* Products */,
@@ -196,7 +198,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -233,7 +235,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
