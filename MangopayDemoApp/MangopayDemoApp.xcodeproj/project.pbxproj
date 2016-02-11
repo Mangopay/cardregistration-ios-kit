@@ -23,6 +23,13 @@
 			remoteGlobalIDString = 1CD169041C6A23550026FB82;
 			remoteInfo = mangopay;
 		};
+		1C6FD5131C6D2EE700B2B64C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1C6FD50D1C6D2D6E00B2B64C /* mangopay.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 1CD169031C6A23550026FB82;
+			remoteInfo = mangopay;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -113,6 +120,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				1C6FD5141C6D2EE700B2B64C /* PBXTargetDependency */,
 			);
 			name = MangopayDemoApp;
 			productName = MangopayDemoApp;
@@ -192,6 +200,14 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		1C6FD5141C6D2EE700B2B64C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = mangopay;
+			targetProxy = 1C6FD5131C6D2EE700B2B64C /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		1C6FD4FF1C6D2CAF00B2B64C /* Main.storyboard */ = {
