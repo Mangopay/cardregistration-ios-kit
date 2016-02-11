@@ -15,6 +15,16 @@
 		1C6FD5061C6D2CAF00B2B64C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1C6FD5041C6D2CAF00B2B64C /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		1C6FD5111C6D2D6E00B2B64C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1C6FD50D1C6D2D6E00B2B64C /* mangopay.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 1CD169041C6A23550026FB82;
+			remoteInfo = mangopay;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		1C6FD4F31C6D2CAF00B2B64C /* MangopayDemoApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MangopayDemoApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1C6FD4F71C6D2CAF00B2B64C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -26,6 +36,7 @@
 		1C6FD5021C6D2CAF00B2B64C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1C6FD5051C6D2CAF00B2B64C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1C6FD5071C6D2CAF00B2B64C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1C6FD50D1C6D2D6E00B2B64C /* mangopay.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = mangopay.xcodeproj; path = ../mangopay.xcodeproj; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -42,6 +53,7 @@
 		1C6FD4EA1C6D2CAF00B2B64C = {
 			isa = PBXGroup;
 			children = (
+				1C6FD50D1C6D2D6E00B2B64C /* mangopay.xcodeproj */,
 				1C6FD4F51C6D2CAF00B2B64C /* MangopayDemoApp */,
 				1C6FD4F41C6D2CAF00B2B64C /* Products */,
 			);
@@ -77,6 +89,14 @@
 				1C6FD4F71C6D2CAF00B2B64C /* main.m */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		1C6FD50E1C6D2D6E00B2B64C /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				1C6FD5121C6D2D6E00B2B64C /* libmangopay.a */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -124,12 +144,28 @@
 			mainGroup = 1C6FD4EA1C6D2CAF00B2B64C;
 			productRefGroup = 1C6FD4F41C6D2CAF00B2B64C /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 1C6FD50E1C6D2D6E00B2B64C /* Products */;
+					ProjectRef = 1C6FD50D1C6D2D6E00B2B64C /* mangopay.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				1C6FD4F21C6D2CAF00B2B64C /* MangopayDemoApp */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		1C6FD5121C6D2D6E00B2B64C /* libmangopay.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libmangopay.a;
+			remoteRef = 1C6FD5111C6D2D6E00B2B64C /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		1C6FD4F11C6D2CAF00B2B64C /* Resources */ = {
@@ -302,6 +338,7 @@
 				1C6FD50C1C6D2CAF00B2B64C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
