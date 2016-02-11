@@ -1,0 +1,115 @@
+Testing cards:
+3569990000000116
+3569990000000140
+4970100000000154
+4970101122334422
+4970101122334406
+4970101122334414
+Expiry: any date in future
+CVX/CVC: 123
+
+/ de asta e nevoie de accesKey ref si data, nu e nevoie in sdk
+1.
+GET https://newqa.checkyeti.com/rest/v1/customer/bookings/cardPreRegistrationData?lang=en&customerEmail=cata_craciun%40hotmail.com&currency=EUR
+Response:
+HTTP 200 OK
+{
+"baseURL": "https://api.sandbox.mangopay.com",
+"clientId": "checkyeti",
+"cardRegistrationURL": "https://homologation-webpayment.payline.com/webpayment/getToken",
+"preregistrationData": "fztL6okJyT8dJpVcSz7IN0QnMMkA5jYKuOVUQW87W65_AHQ8OPdwrPIadMaSFanxS4wCy-yiraxeE65tmxOe8A",
+"accessKey": "1X0m87dmM2LiwFgxPLBJ",
+"cardPreregistrationId": "9264095",
+"cardType": "CB_VISA_MASTERCARD"
+}
+
+// de aici incepe sdk
+2.
+POST https://homologation-webpayment.payline.com/webpayment/getToken
+Content-type:application/x-www-form-urlencoded
+data:fztL6okJyT8dJpVcSz7IN0QnMMkA5jYKuOVUQW87W65_AHQ8OPdwrPIadMaSFanxS4wCy-yiraxeE65tmxOe8A
+accessKeyRef:1X0m87dmM2LiwFgxPLBJ
+cardNumber:3569990000000116
+cardExpirationDate:0417
+cardCvx:123
+Response:
+Content-Type:text/plain; charset=UTF-8
+data=RwbDDk6DzoWUdZ8-ea9DZFwc87g28tEfyPSlh-R3FuuVSvviCfTZns1FvPPAt7u-NogDa8gr81oNz3Fg_tmuC-cefbgvIXzU492lDJ6UzJWIY5k2VI2n09x5TVb7ZkerAOkkUJMnqvosk9oNwBgyDA
+
+// rezultatete de aici sunt trimise la server
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+3.
+POST https://api.sandbox.mangopay.com/v2/checkyeti/CardRegistrations/9264095
+
+Content-type:application/x-www-form-urlencoded
+
+Id: 9264095
+RegistrationData: data=RwbDDk6DzoWUdZ8-ea9DZFwc87g28tEfyPSlh-R3FuuVSvviCfTZns1FvPPAt7u-NogDa8gr81oNz3Fg_tmuC-cefbgvIXzU492lDJ6UzJWIY5k2VI2n09x5TVb7ZkerAOkkUJMnqvosk9oNwBgyDA
+
+
+Response:
+{
+"Id": "9264095",
+"Tag": null,
+"CreationDate": 1446306258,
+"UserId": "9217356",
+"AccessKey": "1X0m87dmM2LiwFgxPLBJ",
+"PreregistrationData": "fztL6okJyT8dJpVcSz7IN0QnMMkA5jYKuOVUQW87W65_AHQ8OPdwrPIadMaSFanxS4wCy-yiraxeE65tmxOe8A",
+"RegistrationData": "data=RwbDDk6DzoWUdZ8-ea9DZFwc87g28tEfyPSlh-R3FuuVSvviCfTZns1FvPPAt7u-NogDa8gr81oNz3Fg_tmuC-cefbgvIXzU492lDJ6UzJWIY5k2VI2n09x5TVb7ZkerAOkkUJMnqvosk9oNwBgyDA",
+"CardId": "9264096",
+"CardType": "CB_VISA_MASTERCARD",
+"CardRegistrationURL": "https://homologation-webpayment.payline.com/webpayment/getToken",
+"ResultCode": "000000",
+"ResultMessage": "Success",
+"Currency": "EUR",
+"Status": "VALIDATED"
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 

@@ -13,6 +13,9 @@
 		1C6FD5011C6D2CAF00B2B64C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1C6FD4FF1C6D2CAF00B2B64C /* Main.storyboard */; };
 		1C6FD5031C6D2CAF00B2B64C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1C6FD5021C6D2CAF00B2B64C /* Assets.xcassets */; };
 		1C6FD5061C6D2CAF00B2B64C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1C6FD5041C6D2CAF00B2B64C /* LaunchScreen.storyboard */; };
+		1C6FD5151C6D2F4B00B2B64C /* libmangopay.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C6FD5121C6D2D6E00B2B64C /* libmangopay.a */; };
+		1C6FD5181C6D2F7900B2B64C /* Info in Resources */ = {isa = PBXBuildFile; fileRef = 1C6FD5161C6D2F7900B2B64C /* Info */; };
+		1C6FD5191C6D2F7900B2B64C /* Junk in Resources */ = {isa = PBXBuildFile; fileRef = 1C6FD5171C6D2F7900B2B64C /* Junk */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +47,8 @@
 		1C6FD5051C6D2CAF00B2B64C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1C6FD5071C6D2CAF00B2B64C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1C6FD50D1C6D2D6E00B2B64C /* mangopay.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = mangopay.xcodeproj; path = ../mangopay.xcodeproj; sourceTree = "<group>"; };
+		1C6FD5161C6D2F7900B2B64C /* Info */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Info; sourceTree = "<group>"; };
+		1C6FD5171C6D2F7900B2B64C /* Junk */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Junk; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,6 +56,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1C6FD5151C6D2F4B00B2B64C /* libmangopay.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -60,6 +66,8 @@
 		1C6FD4EA1C6D2CAF00B2B64C = {
 			isa = PBXGroup;
 			children = (
+				1C6FD5161C6D2F7900B2B64C /* Info */,
+				1C6FD5171C6D2F7900B2B64C /* Junk */,
 				1C6FD50D1C6D2D6E00B2B64C /* mangopay.xcodeproj */,
 				1C6FD4F51C6D2CAF00B2B64C /* MangopayDemoApp */,
 				1C6FD4F41C6D2CAF00B2B64C /* Products */,
@@ -180,9 +188,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1C6FD5181C6D2F7900B2B64C /* Info in Resources */,
 				1C6FD5061C6D2CAF00B2B64C /* LaunchScreen.storyboard in Resources */,
 				1C6FD5031C6D2CAF00B2B64C /* Assets.xcassets in Resources */,
 				1C6FD5011C6D2CAF00B2B64C /* Main.storyboard in Resources */,
+				1C6FD5191C6D2F7900B2B64C /* Junk in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
