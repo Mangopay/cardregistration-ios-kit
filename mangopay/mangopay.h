@@ -6,7 +6,15 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <mangopay/MangopayObject.h>
 #import <mangopay/MPAPIClient.h>
 #import <mangopay/MPConstants.h>
-#import <mangopay/MPCardRegistration.h>
+#import <mangopay/MPCardObject.h>
+
+/*
+ <key>NSAppTransportSecurity</key>
+ <dict>
+ <!--Include to allow all connections (DANGER)-->
+ <key>NSAllowsArbitraryLoads</key>
+ <true/>
+ </dict>
+*/
