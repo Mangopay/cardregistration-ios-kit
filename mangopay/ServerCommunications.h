@@ -10,7 +10,7 @@
 
 @interface ServerCommunications : NSObject
 
-- (void)getInfoWithLanguage:(NSString*)language email:(NSString*)email currency:(NSString*)currency;
+- (void)getInfoWithLanguage:(NSString*)language email:(NSString*)email currency:(NSString*)currency url:(NSString*)URLString;
 
 
 @end

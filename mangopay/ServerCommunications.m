@@ -6,15 +6,17 @@
 //
 
 #import "ServerCommunications.h"
+#import "MPConstants.h"
 
 @implementation ServerCommunications
 
 
-- (void)getInfoWithLanguage:(NSString*)language email:(NSString*)email currency:(NSString*)currency
+- (void)getInfoWithLanguage:(NSString*)language email:(NSString*)email currency:(NSString*)currency url:(NSString*)URLString
 {
     language = @"en";
     email = @"cata_craciun@hotmail.com";
     currency = @"EUR";
+    URLString = @"https://newqa.checkyeti.com/rest/v1/customer/bookings/cardPreRegistrationData";
     
     /* Configure session and set session-wide properties, such as: HTTPAdditionalHeaders,
      HTTPCookieAcceptPolicy, requestCachePolicy or timeoutIntervalForRequest.
@@ -25,11 +27,11 @@
     NSURLSession* session = [NSURLSession sessionWithConfiguration:sessionConfig delegate:nil delegateQueue:nil];
     
     /* Create the Request */
-    NSURL* URL = [NSURL URLWithString:@"https://newqa.checkyeti.com/rest/v1/customer/bookings/cardPreRegistrationData"];
+    NSURL* URL = [NSURL URLWithString:URLString];
     
-    NSDictionary* URLParams = @{@"lang": language,
-                                @"customerEmail": email,
-                                @"currency": currency, };
+    NSDictionary* URLParams = @{MPUrlParamLanguage: language,
+                                MPUrlParamEmail: email,
+                                MPUrlParamCurrency: currency, };
 
     URL = NSURLByAppendingQueryParameters(URL, URLParams);
     NSMutableURLRequest* request = [NSMutableURLRequest requestWithURL:URL];
@@ -78,46 +80,7 @@
 }
 
 
-- (void)sendCardInfo:(id)sender
-{
-    NSURLSessionConfiguration* sessionConfig = [NSURLSessionConfiguration defaultSessionConfiguration];
-    
-    /* Create session, and optionally set a NSURLSessionDelegate. */
-    NSURLSession* session = [NSURLSession sessionWithConfiguration:sessionConfig delegate:nil delegateQueue:nil];
-    
-    /* Create the Request:
-     2 (POST https://homologation-webpayment.payline.com/webpayment/getToken)
-     */
-    
-    NSURL* URL = [NSURL URLWithString:@"https://homologation-webpayment.payline.com/webpayment/getToken"];
-    NSDictionary* URLParams = @{
-                                @"accessKeyRef": @"1X0m87dmM2LiwFgxPLBJ",
-                                @"cardNumber": @"3569990000000116",
-                                @"cardExpirationDate": @"0417",
-                                @"cardCvx": @"123",
-                                @"data": @"3HqPlFutoDFNG4POzHjI-JrYctruFYjl-VLktrBD6K088_dYjTIWVKVKQfn_hhRJS4wCy-yiraxeE65tmxOe8A",
-                                };
-    URL = NSURLByAppendingQueryParameters(URL, URLParams);
-    NSMutableURLRequest* request = [NSMutableURLRequest requestWithURL:URL];
-    request.HTTPMethod = @"POST";
-    
-    // Headers
-    
-    [request addValue:@"JSESSIONID=74DE8EC60865BDDFBDCEE79B1C4E9C6CEABE579E3D3ADD146E9D602CF5A8454D" forHTTPHeaderField:@"Cookie"];
-    
-    /* Start a new Task */
-    NSURLSessionDataTask* task = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-        if (error == nil) {
-            // Success
-            NSLog(@"URL Session Task Succeeded: HTTP %ld", ((NSHTTPURLResponse*)response).statusCode);
-        }
-        else {
-            // Failure
-            NSLog(@"URL Session Task Failed: %@", [error localizedDescription]);
-        }
-    }];
-    [task resume];
-}
+
 
 
 - (void)sendRegistrationData:(id)sender
