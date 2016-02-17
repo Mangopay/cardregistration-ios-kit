@@ -1,15 +1,15 @@
 //
-//  MPCardRegistration.m
+//  MPCardObject.m
 //  mangopay
 //
 //  Copyright © 2016 mangopay. All rights reserved.
 //
 
-#import "MPCardRegistration.h"
+#import "MPCardObject.h"
 
-@implementation MPCardRegistration
+@implementation MPCardObject
 
-@synthesize cardRegistrationURL, preregistrationData, accessKey, clientId, baseURL, cardType;
+@synthesize cardRegistrationURL, cardPreregistrationId, preregistrationData, accessKey, clientId, baseURL, cardType, cardNumber, cardExpirationDate, cardCvx;
 
 - (instancetype)initWithDict:(NSDictionary *)dict
 {
@@ -22,13 +22,14 @@
         self.clientId = [dict objectForKey:@"clientId"];
         self.baseURL = [dict objectForKey:@"baseURL"];
         self.cardType = [dict objectForKey:@"cardType"];
+        self.cardPreregistrationId = [dict objectForKey:@"cardPreregistrationId"];
     }
     return self;
 }
 
 - (void)printCardObject {
     
-    NSLog(@"\nCardObject\ncardRegistrationURL:   %@\npreregistrationData:   %@\naccessKey:   %@\nclientId:   %@\nbaseURL:   %@\ncardType:   %@", self.cardRegistrationURL, self.preregistrationData, self.accessKey, self.clientId, self.baseURL, self.cardType);
+    NSLog(@"\nCardObject\ncardRegistrationURL:   %@\npreregistrationData:   %@\naccessKey:   %@\nclientId:   %@\nbaseURL:   %@\ncardType:   %@\ncardNumber:   %@\ncardExpirationDate:   %@\ncardCvx:   %@\ncardPreregistrationId:   %@", self.cardRegistrationURL, self.preregistrationData, self.accessKey, self.clientId, self.baseURL, self.cardType, self.cardNumber, self.cardExpirationDate, self.cardCvx, self.cardCvx);
 }
 
 - (void)dealloc {
@@ -39,6 +40,10 @@
     self.clientId = nil;
     self.baseURL = nil;
     self.cardType = nil;
+    self.cardNumber = nil;
+    self.cardExpirationDate = nil;
+    self.cardCvx = nil;
+    self.cardPreregistrationId = nil;
 }
 
 

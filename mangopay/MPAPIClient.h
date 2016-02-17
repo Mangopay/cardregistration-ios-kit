@@ -7,7 +7,14 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "MPConstants.h"
+#import "MPCardObject.h"
 
 @interface MPAPIClient : NSObject
+
+- (instancetype)initWithCardObject:(NSDictionary*)cardObject;
+- (void)registerCard:(void (^)(NSDictionary *response, MPErrorType error)) completionHandler;
+
+@property (nonatomic, strong) MPCardObject* cardObject;
 
 @end
