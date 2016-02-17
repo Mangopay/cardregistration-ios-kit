@@ -14,13 +14,51 @@
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="400" height="400"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <subviews>
+                            <imageView opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" image="background_slide_home" translatesAutoresizingMaskIntoConstraints="NO" id="Tjd-t8-lku">
+                                <rect key="frame" x="0.0" y="0.0" width="400" height="400"/>
+                            </imageView>
+                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="mangopay" translatesAutoresizingMaskIntoConstraints="NO" id="MDu-Zg-g1x">
+                                <rect key="frame" x="98" y="177" width="193" height="46"/>
+                            </imageView>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="dPK-Zc-yhj">
+                                <rect key="frame" x="190" y="223" width="20" height="20"/>
+                                <color key="color" red="0.76470588235294112" green="0.31764705882352939" blue="0.15686274509803921" alpha="1" colorSpace="calibratedRGB"/>
+                            </activityIndicatorView>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="dPK-Zc-yhj" firstAttribute="top" secondItem="MDu-Zg-g1x" secondAttribute="top" id="5NT-53-jaL"/>
+                            <constraint firstItem="dPK-Zc-yhj" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="KUm-60-uwz"/>
+                            <constraint firstItem="MDu-Zg-g1x" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="Y8m-zd-Eta"/>
+                            <constraint firstItem="dPK-Zc-yhj" firstAttribute="top" secondItem="MDu-Zg-g1x" secondAttribute="bottom" id="eIl-Kc-a64"/>
+                            <constraint firstItem="Tjd-t8-lku" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="izs-If-k0T"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="Tjd-t8-lku" secondAttribute="bottom" id="k2C-5i-GUi"/>
+                            <constraint firstItem="MDu-Zg-g1x" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" constant="-5" id="lRf-Oq-ziS"/>
+                            <constraint firstItem="Tjd-t8-lku" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="rMK-7X-v2n"/>
+                            <constraint firstAttribute="trailing" secondItem="Tjd-t8-lku" secondAttribute="trailing" id="v1n-5j-9Um"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="5NT-53-jaL"/>
+                            </mask>
+                        </variation>
                     </view>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="400" height="400"/>
+                    <connections>
+                        <outlet property="activityIndicator" destination="dPK-Zc-yhj" id="wVR-b1-Oox"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="360" y="337"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="background_slide_home" width="250" height="664"/>
+        <image name="mangopay" width="193" height="46"/>
+    </resources>
 </document>
