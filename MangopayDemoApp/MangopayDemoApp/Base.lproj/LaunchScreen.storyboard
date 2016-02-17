@@ -20,6 +20,9 @@
                             <imageView opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" image="background_slide_home" translatesAutoresizingMaskIntoConstraints="NO" id="cKI-71-FhX">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                             </imageView>
+                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="mangopay" translatesAutoresizingMaskIntoConstraints="NO" id="sEr-uc-8Wi">
+                                <rect key="frame" x="198.5" y="277" width="193" height="46"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
@@ -27,6 +30,8 @@
                             <constraint firstAttribute="trailing" secondItem="cKI-71-FhX" secondAttribute="trailing" id="6qV-fR-Qqy"/>
                             <constraint firstItem="cKI-71-FhX" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="GlO-sN-fdo"/>
                             <constraint firstItem="cKI-71-FhX" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="RWV-M6-dCw"/>
+                            <constraint firstItem="sEr-uc-8Wi" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" constant="-5" id="y6a-0J-6Nv"/>
+                            <constraint firstItem="sEr-uc-8Wi" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="yaS-NY-dtd"/>
                         </constraints>
                     </view>
                 </viewController>
@@ -37,5 +42,6 @@
     </scenes>
     <resources>
         <image name="background_slide_home" width="250" height="664"/>
+        <image name="mangopay" width="193" height="46"/>
     </resources>
 </document>

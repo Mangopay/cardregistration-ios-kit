@@ -7,6 +7,11 @@
 
 #import <Foundation/Foundation.h>
 
+#define THIS_METHOD NSStringFromSelector(_cmd)
+#define THIS_CLASS NSStringFromClass([self class])
+#define PRINT_CLASS_AND_METHOD NSLog(@"%@ : %@", THIS_CLASS, THIS_METHOD);
+
+
 static NSString * const MP_UrlParamLanguage = @"lang";
 static NSString * const MP_UrlParamEmail = @"customerEmail";
 static NSString * const MP_UrlParamCurrency = @"currency";
