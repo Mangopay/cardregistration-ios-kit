@@ -7,93 +7,105 @@
 //
 
 #import "MPAPIClient.h"
-#import "MPConstants.h"
+
 
 @implementation MPAPIClient
 
-
-- (void)sendRegistrationData:(id)sender
+- (instancetype)initWithCardObject:(NSDictionary*)cardObject
 {
-    NSURLSessionConfiguration* sessionConfig = [NSURLSessionConfiguration defaultSessionConfiguration];
+    self = [super init];
+    if (self) {
+        self.cardObject = [[MPCardObject alloc] initWithDict:cardObject];
+        [self.cardObject printCardObject];
+    }
     
-    /* Create session, and optionally set a NSURLSessionDelegate. */
-    NSURLSession* session = [NSURLSession sessionWithConfiguration:sessionConfig delegate:nil delegateQueue:nil];
-    
-    /* Create the Request:
-     3 (POST https://api.sandbox.mangopay.com/v2////CardRegistrations/10819537)
-     */
-    
-    NSURL* URL = [NSURL URLWithString:@"https://api.sandbox.mangopay.com/v2///CardRegistrations/10819537"];
-    NSMutableURLRequest* request = [NSMutableURLRequest requestWithURL:URL];
-    request.HTTPMethod = @"POST";
-    
-    // Headers
-    
-    [request addValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
-    
-    // Form URL-Encoded Body
-    
-    NSDictionary* bodyParameters = @{
-                                     @"RegistrationData": @"data=tryvrVuF-4q6t35ocbBgQ0WGMj8YvbN9j1e8kpfA1KjA-Pmrgk6VtEpD4t9ihdwffXkUH4rDi4oQntWhgTz-hPt1xMLq5ZQgUR1uh8PWb3Iu4KityD__4TDnwMtTEL2W9p3aho9PqIk4rk3m9nh79w",
-                                     @"Id": @"10819537",
-                                     };
-    request.HTTPBody = [NSStringFromQueryParameters(bodyParameters) dataUsingEncoding:NSUTF8StringEncoding];
-    
-    /* Start a new Task */
-    NSURLSessionDataTask* task = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-        if (error == nil) {
-            // Success
-            NSLog(@"URL Session Task Succeeded: HTTP %ld", ((NSHTTPURLResponse*)response).statusCode);
-        }
-        else {
-            // Failure
-            NSLog(@"URL Session Task Failed: %@", [error localizedDescription]);
-        }
-    }];
-    [task resume];
+    return self;
 }
 
-
-- (void)sendCardInfo:(id)sender
+- (void)registerCard:(void (^)(NSDictionary *response, MPErrorType error)) completionHandler
 {
     NSURLSessionConfiguration* sessionConfig = [NSURLSessionConfiguration defaultSessionConfiguration];
-    
-    /* Create session, and optionally set a NSURLSessionDelegate. */
+    sessionConfig.timeoutIntervalForRequest = 60.0;
     NSURLSession* session = [NSURLSession sessionWithConfiguration:sessionConfig delegate:nil delegateQueue:nil];
     
-    /* Create the Request:
-     2 (POST https://homologation-webpayment.payline.com/webpayment/getToken)
-     */
+    NSURL* URL = [NSURL URLWithString:self.cardObject.cardRegistrationURL];
+    NSDictionary* URLParams = @{@"accessKeyRef": self.cardObject.accessKey,
+                                @"cardNumber": self.cardObject.cardNumber,
+                                @"cardExpirationDate": self.cardObject.cardExpirationDate,
+                                @"cardCvx": self.cardObject.cardCvx,
+                                @"data": self.cardObject.preregistrationData, };
     
-    NSURL* URL = [NSURL URLWithString:@"https://homologation-webpayment.payline.com/webpayment/getToken"];
-    NSDictionary* URLParams = @{
-                                @"accessKeyRef": @"1X0m87dmM2LiwFgxPLBJ",
-                                @"cardNumber": @"3569990000000116",
-                                @"cardExpirationDate": @"0417",
-                                @"cardCvx": @"123",
-                                @"data": @"3HqPlFutoDFNG4POzHjI-JrYctruFYjl-VLktrBD6K088_dYjTIWVKVKQfn_hhRJS4wCy-yiraxeE65tmxOe8A",
-                                };
     URL = NSURLByAppendingQueryParameters(URL, URLParams);
     NSMutableURLRequest* request = [NSMutableURLRequest requestWithURL:URL];
     request.HTTPMethod = @"POST";
     
-    // Headers
-    
-    [request addValue:@"JSESSIONID=74DE8EC60865BDDFBDCEE79B1C4E9C6CEABE579E3D3ADD146E9D602CF5A8454D" forHTTPHeaderField:@"Cookie"];
-    
-    /* Start a new Task */
     NSURLSessionDataTask* task = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-        if (error == nil) {
-            // Success
-            NSLog(@"URL Session Task Succeeded: HTTP %ld", ((NSHTTPURLResponse*)response).statusCode);
-        }
+        
+        if (error == nil)
+            if (data) {
+                NSString *responseString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+                if (responseString) {
+                    
+                    [self sendRegistrationData:responseString
+                             completionHandler:^(NSDictionary *responseDictionary, MPErrorType error) {
+                                 
+                            if (error != MPErrorTypeNone) {
+                                completionHandler(nil, error);
+                                return;
+                            }
+                             
+                            completionHandler(responseDictionary, error);
+                    }];
+                }
+                else
+                    completionHandler(nil, MPErrorType1);
+            }
+            else
+               completionHandler(nil, MPErrorType1);
         else {
-            // Failure
-            NSLog(@"URL Session Task Failed: %@", [error localizedDescription]);
+            completionHandler(nil, MPErrorType1);
+            return;
         }
     }];
     [task resume];
 }
 
+
+- (void)sendRegistrationData:(NSString*)registrationData completionHandler:(void (^)(NSDictionary *responseDictionary, MPErrorType error)) completionHandler
+{
+    NSURLSessionConfiguration* sessionConfig = [NSURLSessionConfiguration defaultSessionConfiguration];
+    sessionConfig.timeoutIntervalForRequest = 60.0;
+    NSURLSession* session = [NSURLSession sessionWithConfiguration:sessionConfig delegate:nil delegateQueue:nil];
+
+    NSString* URLString = [NSString stringWithFormat:@"%@/v2/%@/CardRegistrations/%@",
+                           self.cardObject.baseURL,
+                           self.cardObject.clientId,
+                           self.cardObject.cardPreregistrationId];
+    
+    NSDictionary* bodyParameters = @{@"RegistrationData": registrationData,
+                                     @"Id": self.cardObject.clientId,};
+    
+    NSURL* URL = [NSURL URLWithString:URLString];
+    NSMutableURLRequest* request = [NSMutableURLRequest requestWithURL:URL];
+    request.HTTPMethod = @"POST";
+    request.HTTPBody = [NSStringFromQueryParameters(bodyParameters) dataUsingEncoding:NSUTF8StringEncoding];
+
+    NSURLSessionDataTask* task = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+        
+        if (error == nil)
+            if (data) {
+                NSDictionary* responseObject = objectFromJSONdata(data);
+                if (responseObject)
+                    completionHandler(responseObject, MPErrorTypeNone);
+                else
+                    completionHandler(nil, MPErrorType1);
+            }
+            else
+             completionHandler(nil, MPErrorType1);
+        else
+            completionHandler(nil, MPErrorType1);
+    }];
+    [task resume];
+}
 
 @end
