@@ -16,7 +16,7 @@
     language = @"en";
     email = @"cata_craciun@hotmail.com";
     currency = @"EUR";
-    URLString = @"https://newqa.checkyeti.com/rest/v1/customer/bookings/cardPreRegistrationData";
+    URLString = @"https://sample.com/rest/v1/customer/bookings/cardPreRegistrationData";
     
     /* Configure session and set session-wide properties, such as: HTTPAdditionalHeaders,
      HTTPCookieAcceptPolicy, requestCachePolicy or timeoutIntervalForRequest.
@@ -28,7 +28,7 @@
     
     /* Create the Request */
     NSURL* URL = [NSURL URLWithString:URLString];
-    
+
     NSDictionary* URLParams = @{MPUrlParamLanguage: language,
                                 MPUrlParamEmail: email,
                                 MPUrlParamCurrency: currency, };
@@ -49,7 +49,7 @@
             
             /*
             {"baseURL":"https://api.sandbox.mangopay.com"
-             "clientId":"checkyeti"
+             "clientId":"//"
              "cardRegistrationURL":"https://homologation-webpayment.payline.com/webpayment/getToken"
              "preregistrationData":"c9KuNKYJ7Ur8QlG3XTkcYPklG7d8VLx4Tm0AlxCp9oXLCddJTV81M-uT5jZovwK3S4wCy-yiraxeE65tmxOe8A"
              "accessKey":"1X0m87dmM2LiwFgxPLBJ"
@@ -91,10 +91,10 @@
     NSURLSession* session = [NSURLSession sessionWithConfiguration:sessionConfig delegate:nil delegateQueue:nil];
     
     /* Create the Request:
-     3 (POST https://api.sandbox.mangopay.com/v2/checkyeti/CardRegistrations/10819537)
+     3 (POST https://api.sandbox.mangopay.com/v2////CardRegistrations/10819537)
      */
     
-    NSURL* URL = [NSURL URLWithString:@"https://api.sandbox.mangopay.com/v2/checkyeti/CardRegistrations/10819537"];
+    NSURL* URL = [NSURL URLWithString:@"https://api.sandbox.mangopay.com/v2///CardRegistrations/10819537"];
     NSMutableURLRequest* request = [NSMutableURLRequest requestWithURL:URL];
     request.HTTPMethod = @"POST";
     
