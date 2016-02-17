@@ -8,22 +8,11 @@
 
 #import <Foundation/Foundation.h>
 
-#define MP_UrlParamLanguage @"lang"
-#define MP_UrlParamEmail @"customerEmail"
-#define MP_UrlParamCurrency @"currency"
+static NSString * const MP_UrlParamLanguage = @"lang";
+static NSString * const MP_UrlParamEmail = @"customerEmail";
+static NSString * const MP_UrlParamCurrency = @"currency";
 
-#define MP_baseURL @"https://api.sandbox.mangopay.com"
-
-
-// Create a new CardRegistration object on the server and pass it over to the JavaScript kit:
-// Initialize with card register data prepared on the server
-mangoPay.cardRegistration.init({
-    cardRegistrationURL: {CardRegistrationURL property},
-    preregistrationData: {PreregistrationData property},
-    accessKey: {AccessKey property},
-    Id: {Id property}
-});
-
+static NSString * const MP_baseURL = @"https://api.sandbox.mangopay.com";
 
 // Card data collected from the user
 #define MP_cardNumber @""
@@ -32,12 +21,59 @@ mangoPay.cardRegistration.init({
 #define MP_cardType @""
 
 
-// Set MangoPay API base URL and Client ID
-mangoPay.cardRegistration.baseURL = "https://api.sandbox.mangopay.com";
-mangoPay.cardRegistration.clientId = {your-client-id};
 
 
+/*
+ * Utils
+ */
 
+#define THIS_METHOD NSStringFromSelector(_cmd)
+#define THIS_CLASS NSStringFromClass([self class])
+#define PRINT_CLASS_AND_METHOD NSLog(@"%@ : %@", THIS_CLASS, THIS_METHOD);
+
+/**
+ This creates a new query parameters string from the given NSDictionary. For
+ example, if the input is @{@"day":@"Tuesday", @"month":@"January"}, the output
+ string will be @"day=Tuesday&month=January".
+ @param queryParameters The input dictionary.
+ @return The created parameters string.
+ */
+static NSString* NSStringFromQueryParameters(NSDictionary* queryParameters)
+{
+    NSMutableArray* parts = [NSMutableArray array];
+    [queryParameters enumerateKeysAndObjectsUsingBlock:^(id key, id value, BOOL *stop) {
+        NSString *part = [NSString stringWithFormat: @"%@=%@",
+                          [key stringByAddingPercentEscapesUsingEncoding: NSUTF8StringEncoding],
+                          [value stringByAddingPercentEscapesUsingEncoding: NSUTF8StringEncoding]
+                          ];
+        [parts addObject:part];
+    }];
+    return [parts componentsJoinedByString: @"&"];
+}
+
+
+/**
+ Creates a new URL by adding the given query parameters.
+ @param URL The input URL.
+ @param queryParameters The query parameter dictionary to add.
+ @return A new NSURL.
+ */
+static NSURL* NSURLByAppendingQueryParameters(NSURL* URL, NSDictionary* queryParameters)
+{
+    NSString* URLString = [NSString stringWithFormat:@"%@?%@",
+                           [URL absoluteString],
+                           NSStringFromQueryParameters(queryParameters)
+                           ];
+    return [NSURL URLWithString:URLString];
+}
+
+static NSDictionary* objectFromJSONdata(NSData* data)
+{
+    if (data)
+        return [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:NULL];
+    
+    return nil;
+}
 
 
 

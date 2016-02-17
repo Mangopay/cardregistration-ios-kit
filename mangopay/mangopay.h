@@ -6,7 +6,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <mangopay/ServerCommunications.h>
 #import <mangopay/MangopayObject.h>
 #import <mangopay/MPAPIClient.h>
-
+#import <mangopay/MPConstants.h>
+#import <mangopay/MPCardRegistration.h>

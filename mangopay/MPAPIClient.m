@@ -7,8 +7,51 @@
 //
 
 #import "MPAPIClient.h"
+#import "MPConstants.h"
 
 @implementation MPAPIClient
+
+
+- (void)sendRegistrationData:(id)sender
+{
+    NSURLSessionConfiguration* sessionConfig = [NSURLSessionConfiguration defaultSessionConfiguration];
+    
+    /* Create session, and optionally set a NSURLSessionDelegate. */
+    NSURLSession* session = [NSURLSession sessionWithConfiguration:sessionConfig delegate:nil delegateQueue:nil];
+    
+    /* Create the Request:
+     3 (POST https://api.sandbox.mangopay.com/v2////CardRegistrations/10819537)
+     */
+    
+    NSURL* URL = [NSURL URLWithString:@"https://api.sandbox.mangopay.com/v2///CardRegistrations/10819537"];
+    NSMutableURLRequest* request = [NSMutableURLRequest requestWithURL:URL];
+    request.HTTPMethod = @"POST";
+    
+    // Headers
+    
+    [request addValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
+    
+    // Form URL-Encoded Body
+    
+    NSDictionary* bodyParameters = @{
+                                     @"RegistrationData": @"data=tryvrVuF-4q6t35ocbBgQ0WGMj8YvbN9j1e8kpfA1KjA-Pmrgk6VtEpD4t9ihdwffXkUH4rDi4oQntWhgTz-hPt1xMLq5ZQgUR1uh8PWb3Iu4KityD__4TDnwMtTEL2W9p3aho9PqIk4rk3m9nh79w",
+                                     @"Id": @"10819537",
+                                     };
+    request.HTTPBody = [NSStringFromQueryParameters(bodyParameters) dataUsingEncoding:NSUTF8StringEncoding];
+    
+    /* Start a new Task */
+    NSURLSessionDataTask* task = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+        if (error == nil) {
+            // Success
+            NSLog(@"URL Session Task Succeeded: HTTP %ld", ((NSHTTPURLResponse*)response).statusCode);
+        }
+        else {
+            // Failure
+            NSLog(@"URL Session Task Failed: %@", [error localizedDescription]);
+        }
+    }];
+    [task resume];
+}
 
 
 - (void)sendCardInfo:(id)sender
@@ -50,59 +93,6 @@
         }
     }];
     [task resume];
-}
-
-
-
-
-/*
- * Utils
- */
-
-/**
- This creates a new query parameters string from the given NSDictionary. For
- example, if the input is @{@"day":@"Tuesday", @"month":@"January"}, the output
- string will be @"day=Tuesday&month=January".
- @param queryParameters The input dictionary.
- @return The created parameters string.
- */
-static NSString* NSStringFromQueryParameters(NSDictionary* queryParameters)
-{
-    NSMutableArray* parts = [NSMutableArray array];
-    [queryParameters enumerateKeysAndObjectsUsingBlock:^(id key, id value, BOOL *stop) {
-        NSString *part = [NSString stringWithFormat: @"%@=%@",
-                          [key stringByAddingPercentEscapesUsingEncoding: NSUTF8StringEncoding],
-                          [value stringByAddingPercentEscapesUsingEncoding: NSUTF8StringEncoding]
-                          ];
-        [parts addObject:part];
-    }];
-    return [parts componentsJoinedByString: @"&"];
-}
-
-
-
-
-/**
- Creates a new URL by adding the given query parameters.
- @param URL The input URL.
- @param queryParameters The query parameter dictionary to add.
- @return A new NSURL.
- */
-static NSURL* NSURLByAppendingQueryParameters(NSURL* URL, NSDictionary* queryParameters)
-{
-    NSString* URLString = [NSString stringWithFormat:@"%@?%@",
-                           [URL absoluteString],
-                           NSStringFromQueryParameters(queryParameters)
-                           ];
-    return [NSURL URLWithString:URLString];
-}
-
-static NSDictionary* objectFromJSONdata(NSData* data)
-{
-    if (data)
-        return [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:NULL];
-    
-    return nil;
 }
 
 
