@@ -7,3 +7,4 @@
 
 #import <UIKit/UIKit.h>
 #import <mangopay/ServerCommunications.h>
+#import <mangopay/MangopayObject.h>

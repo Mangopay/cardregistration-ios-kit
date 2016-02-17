@@ -6,6 +6,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <mangopay/MangopayObject.h>
 
 @interface ServerCommunications : NSObject
 

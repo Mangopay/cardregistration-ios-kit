@@ -22,6 +22,8 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		04B3D0171C7480D1003BB7B6 /* MangopayObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 04B3D0151C7480D1003BB7B6 /* MangopayObject.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		04B3D0181C7480D1003BB7B6 /* MangopayObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 04B3D0161C7480D1003BB7B6 /* MangopayObject.m */; };
 		1CD169081C6A23550026FB82 /* mangopay.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 1CD169071C6A23550026FB82 /* mangopay.h */; };
 		1CD169111C6A23BE0026FB82 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1CD169101C6A23BE0026FB82 /* UIKit.framework */; };
 		1CD169131C6A24420026FB82 /* mangopay.h in Headers */ = {isa = PBXBuildFile; fileRef = 1CD169071C6A23550026FB82 /* mangopay.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -53,6 +55,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		04B3D0151C7480D1003BB7B6 /* MangopayObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MangopayObject.h; sourceTree = "<group>"; };
+		04B3D0161C7480D1003BB7B6 /* MangopayObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MangopayObject.m; sourceTree = "<group>"; };
 		1CD169041C6A23550026FB82 /* libmangopay.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libmangopay.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		1CD169071C6A23550026FB82 /* mangopay.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = mangopay.h; sourceTree = "<group>"; };
 		1CD169101C6A23BE0026FB82 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -95,6 +99,8 @@
 				1CD169071C6A23550026FB82 /* mangopay.h */,
 				1CD169161C6A284E0026FB82 /* ServerCommunications.h */,
 				1CD169171C6A284E0026FB82 /* ServerCommunications.m */,
+				04B3D0151C7480D1003BB7B6 /* MangopayObject.h */,
+				04B3D0161C7480D1003BB7B6 /* MangopayObject.m */,
 			);
 			path = mangopay;
 			sourceTree = "<group>";
@@ -115,6 +121,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1CD169131C6A24420026FB82 /* mangopay.h in Headers */,
+				04B3D0171C7480D1003BB7B6 /* MangopayObject.h in Headers */,
 				1CD169181C6A284E0026FB82 /* ServerCommunications.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -212,6 +219,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				04B3D0181C7480D1003BB7B6 /* MangopayObject.m in Sources */,
 				1CD169191C6A284E0026FB82 /* ServerCommunications.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -353,6 +361,7 @@
 				1C6FD51E1C6D322100B2B64C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		1CD168FF1C6A23550026FB82 /* Build configuration list for PBXProject "mangopay" */ = {
 			isa = XCConfigurationList;
