@@ -10,42 +10,36 @@
 #import <mangopay/mangopay.h>
 
 
+static NSString * const language = @"en";
+static NSString * const email = @"cata_craciun@hotmail.com";
+static NSString * const currency = @"EUR";
+static NSString * const URLString = @"https://sample.com/";
+
+
 @interface ViewController ()
 @property (nonatomic, strong) MPAPIClient *mangopayClient;
 @end
-
 
 @implementation ViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    PRINT_CLASS_AND_METHOD
+ 
+    [self.activityIndicator startAnimating];
     
-    
-    NSString* language = @"en";
-    NSString* email = @"cata_craciun@hotmail.com";
-    NSString* currency = @"EUR";
-    NSString* URLString = @"https://sample.com/rest/v1/customer/bookings/cardPreRegistrationData";
-    
-    [self generateCardRegistrationInfoWithLanguage:language email:email currency:currency url:URLString];
+    [self generateCardRegistration];
 }
 
-- (void)generateCardRegistrationInfoWithLanguage:(NSString*)language email:(NSString*)email currency:(NSString*)currency url:(NSString*)URLString
+- (void)generateCardRegistration
 {
-    PRINT_CLASS_AND_METHOD
-    
-    /* Configure session and set session-wide properties */
     NSURLSessionConfiguration* sessionConfig = [NSURLSessionConfiguration defaultSessionConfiguration];
-    
-    /* Create session, and optionally set a NSURLSessionDelegate */
+    sessionConfig.timeoutIntervalForRequest = 60.0;
     NSURLSession* session = [NSURLSession sessionWithConfiguration:sessionConfig delegate:nil delegateQueue:nil];
     
-    /* Create the Request */
     NSURL* URL = [NSURL URLWithString:URLString];
-    
     NSDictionary* URLParams = @{MP_UrlParamLanguage: language,
                                 MP_UrlParamEmail: email,
-                                MP_UrlParamCurrency: currency, };
+                                MP_UrlParamCurrency: currency,};
     
     URL = NSURLByAppendingQueryParameters(URL, URLParams);
     NSMutableURLRequest* request = [NSMutableURLRequest requestWithURL:URL];
@@ -54,36 +48,43 @@
     /* Start a new Task */
     NSURLSessionDataTask* task = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
         
-        if (error == nil) {
-            // Success
+        if (error == nil) { // Success
             NSHTTPURLResponse *httpResp = (NSHTTPURLResponse*) response;
             if (httpResp.statusCode == 200) {
                 
-                NSMutableDictionary* responseObject = [objectFromJSONdata(data) mutableCopy];
+                NSDictionary* responseObject = objectFromJSONdata(data);
                 if (responseObject) {
-                    MPCardRegistration* cardObject = [[MPCardRegistration alloc] initWithDict:responseObject];
-                    [cardObject printCardObject];
+                
+                    // initiate MPAPIClient with received cardObject
+                    self.mangopayClient = [[MPAPIClient alloc] initWithCardObject:responseObject];
                     
-                    
-                    //    self.mangopayClient = [MPAPIClient mangopayWithClientToken:CLIENT_TOKEN_FROM_SERVER];
-                    
-                    //    MPClientCardRequest *request = [MPClientCardRequest new];
-                    //    request.number = @"4111111111111111";
-                    //    request.expirationMonth = @"12";
-                    //    request.expirationYear = @"2018";
-                    //
-                    //    [mangopay tokenizeCard:request
-                    //                 completion:^(NSString *nonce, NSError *error) {
-                    //                     // Communicate the nonce to your server, or handle error
-                    //                 }];
+                    // collect card info from the user
+                    [self.mangopayClient.cardObject setCardNumber:@"4970100000000154"];
+                    [self.mangopayClient.cardObject setCardExpirationDate:@"1016"];
+                    [self.mangopayClient.cardObject setCardCvx:@"123"];
+
+                    // register card
+                    [self.mangopayClient registerCard:^(NSDictionary *response, MPErrorType error) {
+                        
+                        if (error) {
+                            NSLog(@"final error: %ld", error);
+                        }
+                        else {
+                            NSLog(@"final response %@", response);
+                            NSLog(@"final no error %ld", error);
+                        }
+                        
+                        dispatch_async( dispatch_get_main_queue(), ^{
+                            [self.activityIndicator stopAnimating];
+                        });
+                    }];
                 }
             }
             else {
                 NSLog(@"Handle status code %ld", httpResp.statusCode);
             }
         }
-        else {
-            // Failure
+        else { // Failure
             NSLog(@"URL Session Task Failed: %@", [error localizedDescription]);
         }
     }];
@@ -92,7 +93,6 @@
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 @end
