@@ -2,7 +2,6 @@
 //  MPCardRegistration.m
 //  mangopay
 //
-//  Created by Victor on 2/17/16.
 //  Copyright © 2016 mangopay. All rights reserved.
 //
 
@@ -15,7 +14,6 @@
 - (instancetype)initWithDict:(NSDictionary *)dict
 {
     self = [super init];
-    
     if (self)
     {
         self.cardRegistrationURL = [dict objectForKey:@"cardRegistrationURL"];
