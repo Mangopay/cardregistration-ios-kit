@@ -28,9 +28,12 @@
     
     [[[NSURLSession sharedSession] dataTaskWithRequest:clientTokenRequest completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
         // TODO: Handle errors
-        NSString *clientToken = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
         
-        self.mangopayClient = [[MPAPIClient alloc] initWithAuthorization:clientToken];
+        NSLog(@"response %@", response);
+        
+//        NSString *clientToken = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+//        
+//        self.mangopayClient = [[MPAPIClient alloc] initWithAuthorization:clientToken];
         // As an example, you may wish to present our Drop-in UI at this point.
         // Continue to the next section to learn more...
     }] resume];

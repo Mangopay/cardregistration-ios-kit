@@ -29,17 +29,17 @@
     /* Create the Request */
     NSURL* URL = [NSURL URLWithString:URLString];
 
-    NSDictionary* URLParams = @{MPUrlParamLanguage: language,
-                                MPUrlParamEmail: email,
-                                MPUrlParamCurrency: currency, };
+    NSDictionary* URLParams = @{MP_UrlParamLanguage: language,
+                                MP_UrlParamEmail: email,
+                                MP_UrlParamCurrency: currency, };
 
     URL = NSURLByAppendingQueryParameters(URL, URLParams);
     NSMutableURLRequest* request = [NSMutableURLRequest requestWithURL:URL];
     request.HTTPMethod = @"GET";
     
     // Headers
-    [request addValue:@"JSESSIONID=4BE6CFAD4897DECB925252BA44185B88" forHTTPHeaderField:@"Cookie"];
-    [request addValue:@"application/octet-stream" forHTTPHeaderField:@"Content-Type"];
+//    [request addValue:@"JSESSIONID=4BE6CFAD4897DECB925252BA44185B88" forHTTPHeaderField:@"Cookie"];
+//    [request addValue:@"application/octet-stream" forHTTPHeaderField:@"Content-Type"];
     
     /* Start a new Task */
     NSURLSessionDataTask* task = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
