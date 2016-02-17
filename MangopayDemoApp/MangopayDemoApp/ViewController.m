@@ -19,38 +19,75 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
+    PRINT_CLASS_AND_METHOD
     
+    
+    NSString* language = @"en";
+    NSString* email = @"cata_craciun@hotmail.com";
+    NSString* currency = @"EUR";
+    NSString* URLString = @"https://sample.com/rest/v1/customer/bookings/cardPreRegistrationData";
+    
+    [self generateCardRegistrationInfoWithLanguage:language email:email currency:currency url:URLString];
+}
 
-    NSURL *clientTokenURL = [NSURL URLWithString:@"https://mangopay-sample.com/client_token"];
-    NSMutableURLRequest *clientTokenRequest = [NSMutableURLRequest requestWithURL:clientTokenURL];
-    [clientTokenRequest setValue:@"text/plain" forHTTPHeaderField:@"Accept"];
+- (void)generateCardRegistrationInfoWithLanguage:(NSString*)language email:(NSString*)email currency:(NSString*)currency url:(NSString*)URLString
+{
+    PRINT_CLASS_AND_METHOD
     
-    [[[NSURLSession sharedSession] dataTaskWithRequest:clientTokenRequest completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-        // TODO: Handle errors
+    /* Configure session and set session-wide properties */
+    NSURLSessionConfiguration* sessionConfig = [NSURLSessionConfiguration defaultSessionConfiguration];
+    
+    /* Create session, and optionally set a NSURLSessionDelegate */
+    NSURLSession* session = [NSURLSession sessionWithConfiguration:sessionConfig delegate:nil delegateQueue:nil];
+    
+    /* Create the Request */
+    NSURL* URL = [NSURL URLWithString:URLString];
+    
+    NSDictionary* URLParams = @{MP_UrlParamLanguage: language,
+                                MP_UrlParamEmail: email,
+                                MP_UrlParamCurrency: currency, };
+    
+    URL = NSURLByAppendingQueryParameters(URL, URLParams);
+    NSMutableURLRequest* request = [NSMutableURLRequest requestWithURL:URL];
+    request.HTTPMethod = @"GET";
+    
+    /* Start a new Task */
+    NSURLSessionDataTask* task = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
         
-        NSLog(@"response %@", response);
-        
-//        NSString *clientToken = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-//        
-//        self.mangopayClient = [[MPAPIClient alloc] initWithAuthorization:clientToken];
-        // As an example, you may wish to present our Drop-in UI at this point.
-        // Continue to the next section to learn more...
-    }] resume];
-    
-    
-//    self.mangopay = [Mangopay mangopayWithClientToken:CLIENT_TOKEN_FROM_SERVER];
-//    
-//    MPClientCardRequest *request = [MPClientCardRequest new];
-//    request.number = @"4111111111111111";
-//    request.expirationMonth = @"12";
-//    request.expirationYear = @"2018";
-//    
-//    [mangopay tokenizeCard:request
-//                 completion:^(NSString *nonce, NSError *error) {
-//                     // Communicate the nonce to your server, or handle error
-//                 }];
-    
+        if (error == nil) {
+            // Success
+            NSHTTPURLResponse *httpResp = (NSHTTPURLResponse*) response;
+            if (httpResp.statusCode == 200) {
+                
+                NSMutableDictionary* responseObject = [objectFromJSONdata(data) mutableCopy];
+                if (responseObject) {
+                    MPCardRegistration* cardObject = [[MPCardRegistration alloc] initWithDict:responseObject];
+                    [cardObject printCardObject];
+                    
+                    
+                    //    self.mangopayClient = [MPAPIClient mangopayWithClientToken:CLIENT_TOKEN_FROM_SERVER];
+                    
+                    //    MPClientCardRequest *request = [MPClientCardRequest new];
+                    //    request.number = @"4111111111111111";
+                    //    request.expirationMonth = @"12";
+                    //    request.expirationYear = @"2018";
+                    //
+                    //    [mangopay tokenizeCard:request
+                    //                 completion:^(NSString *nonce, NSError *error) {
+                    //                     // Communicate the nonce to your server, or handle error
+                    //                 }];
+                }
+            }
+            else {
+                NSLog(@"Handle status code %ld", httpResp.statusCode);
+            }
+        }
+        else {
+            // Failure
+            NSLog(@"URL Session Task Failed: %@", [error localizedDescription]);
+        }
+    }];
+    [task resume];
 }
 
 - (void)didReceiveMemoryWarning {
