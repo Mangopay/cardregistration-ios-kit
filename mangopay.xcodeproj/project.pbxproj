@@ -22,13 +22,11 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
-		04B3D0171C7480D1003BB7B6 /* MangopayObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 04B3D0151C7480D1003BB7B6 /* MangopayObject.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		04B3D0181C7480D1003BB7B6 /* MangopayObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 04B3D0161C7480D1003BB7B6 /* MangopayObject.m */; };
 		1C2F65AC1C74F36200A28808 /* MPAPIClient.h in Headers */ = {isa = PBXBuildFile; fileRef = 1C2F65AA1C74F36200A28808 /* MPAPIClient.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1C2F65AD1C74F36200A28808 /* MPAPIClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C2F65AB1C74F36200A28808 /* MPAPIClient.m */; };
 		1C2F65B01C74F61000A28808 /* MPConstants.h in Headers */ = {isa = PBXBuildFile; fileRef = 1C2F65AE1C74F61000A28808 /* MPConstants.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		1C2F65B51C74FAF200A28808 /* MPCardRegistration.h in Headers */ = {isa = PBXBuildFile; fileRef = 1C2F65B31C74FAF200A28808 /* MPCardRegistration.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		1C2F65B61C74FAF200A28808 /* MPCardRegistration.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C2F65B41C74FAF200A28808 /* MPCardRegistration.m */; };
+		1C2F65B51C74FAF200A28808 /* MPCardObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 1C2F65B31C74FAF200A28808 /* MPCardObject.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1C2F65B61C74FAF200A28808 /* MPCardObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C2F65B41C74FAF200A28808 /* MPCardObject.m */; };
 		1CD169081C6A23550026FB82 /* mangopay.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 1CD169071C6A23550026FB82 /* mangopay.h */; };
 		1CD169111C6A23BE0026FB82 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1CD169101C6A23BE0026FB82 /* UIKit.framework */; };
 		1CD169131C6A24420026FB82 /* mangopay.h in Headers */ = {isa = PBXBuildFile; fileRef = 1CD169071C6A23550026FB82 /* mangopay.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -58,13 +56,11 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		04B3D0151C7480D1003BB7B6 /* MangopayObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MangopayObject.h; sourceTree = "<group>"; };
-		04B3D0161C7480D1003BB7B6 /* MangopayObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MangopayObject.m; sourceTree = "<group>"; };
 		1C2F65AA1C74F36200A28808 /* MPAPIClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPAPIClient.h; sourceTree = "<group>"; };
 		1C2F65AB1C74F36200A28808 /* MPAPIClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPAPIClient.m; sourceTree = "<group>"; };
 		1C2F65AE1C74F61000A28808 /* MPConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPConstants.h; sourceTree = "<group>"; };
-		1C2F65B31C74FAF200A28808 /* MPCardRegistration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPCardRegistration.h; sourceTree = "<group>"; };
-		1C2F65B41C74FAF200A28808 /* MPCardRegistration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPCardRegistration.m; sourceTree = "<group>"; };
+		1C2F65B31C74FAF200A28808 /* MPCardObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPCardObject.h; sourceTree = "<group>"; };
+		1C2F65B41C74FAF200A28808 /* MPCardObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPCardObject.m; sourceTree = "<group>"; };
 		1CD169041C6A23550026FB82 /* libmangopay.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libmangopay.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		1CD169071C6A23550026FB82 /* mangopay.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = mangopay.h; sourceTree = "<group>"; };
 		1CD169101C6A23BE0026FB82 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -106,10 +102,8 @@
 				1C2F65AE1C74F61000A28808 /* MPConstants.h */,
 				1C2F65AA1C74F36200A28808 /* MPAPIClient.h */,
 				1C2F65AB1C74F36200A28808 /* MPAPIClient.m */,
-				1C2F65B31C74FAF200A28808 /* MPCardRegistration.h */,
-				1C2F65B41C74FAF200A28808 /* MPCardRegistration.m */,
-				04B3D0151C7480D1003BB7B6 /* MangopayObject.h */,
-				04B3D0161C7480D1003BB7B6 /* MangopayObject.m */,
+				1C2F65B31C74FAF200A28808 /* MPCardObject.h */,
+				1C2F65B41C74FAF200A28808 /* MPCardObject.m */,
 			);
 			path = mangopay;
 			sourceTree = "<group>";
@@ -130,8 +124,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1CD169131C6A24420026FB82 /* mangopay.h in Headers */,
-				04B3D0171C7480D1003BB7B6 /* MangopayObject.h in Headers */,
-				1C2F65B51C74FAF200A28808 /* MPCardRegistration.h in Headers */,
+				1C2F65B51C74FAF200A28808 /* MPCardObject.h in Headers */,
 				1C2F65B01C74F61000A28808 /* MPConstants.h in Headers */,
 				1C2F65AC1C74F36200A28808 /* MPAPIClient.h in Headers */,
 			);
@@ -230,8 +223,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				04B3D0181C7480D1003BB7B6 /* MangopayObject.m in Sources */,
-				1C2F65B61C74FAF200A28808 /* MPCardRegistration.m in Sources */,
+				1C2F65B61C74FAF200A28808 /* MPCardObject.m in Sources */,
 				1C2F65AD1C74F36200A28808 /* MPAPIClient.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -297,7 +289,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -334,7 +326,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;

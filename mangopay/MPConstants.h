@@ -2,7 +2,6 @@
 //  MPConstants.h
 //  mangopay
 //
-//  Created by Victor on 2/17/16.
 //  Copyright © 2016 mangopay. All rights reserved.
 //
 
@@ -12,29 +11,18 @@ static NSString * const MP_UrlParamLanguage = @"lang";
 static NSString * const MP_UrlParamEmail = @"customerEmail";
 static NSString * const MP_UrlParamCurrency = @"currency";
 
-static NSString * const MP_baseURL = @"https://api.sandbox.mangopay.com";
-
-// Card data collected from the user
-#define MP_cardNumber @""
-#define MP_cardExpirationDate @""
-#define MP_cardCvx @""
-#define MP_cardType @""
-
-
-
+typedef NS_ENUM (NSUInteger, MPErrorType) {
+    MPErrorTypeNone = 0,
+    MPErrorType1,
+    MPErrorType2
+};
 
 /*
  * Utils
  */
 
-#define THIS_METHOD NSStringFromSelector(_cmd)
-#define THIS_CLASS NSStringFromClass([self class])
-#define PRINT_CLASS_AND_METHOD NSLog(@"%@ : %@", THIS_CLASS, THIS_METHOD);
-
 /**
- This creates a new query parameters string from the given NSDictionary. For
- example, if the input is @{@"day":@"Tuesday", @"month":@"January"}, the output
- string will be @"day=Tuesday&month=January".
+ This creates a new query parameters string from the given NSDictionary.
  @param queryParameters The input dictionary.
  @return The created parameters string.
  */
