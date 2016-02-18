@@ -13,7 +13,7 @@
 static NSString * const language = @"en";
 static NSString * const email = @"cata_craciun@hotmail.com";
 static NSString * const currency = @"EUR";
-static NSString * const URLString = @"https://sample";
+static NSString * const serverURL = @"";
 
 
 @interface ViewController ()
@@ -39,7 +39,7 @@ static NSString * const URLString = @"https://sample";
         }
         
         if (httpResp.statusCode != 200) {
-            NSLog(@"Handle status code %ld", httpResp.statusCode);
+            NSLog(@"Handle status code %ld", (long)httpResp.statusCode);
             dispatch_async( dispatch_get_main_queue(), ^{
                 [self.activityIndicator stopAnimating];
             });
@@ -50,9 +50,7 @@ static NSString * const URLString = @"https://sample";
         self.mangopayClient = [[MPAPIClient alloc] initWithCardObject:responseObject];
         
         // collect card info from the user
-        [self.mangopayClient.cardObject setCardNumber:@"4970100000000154"];
-        [self.mangopayClient.cardObject setCardExpirationDate:@"1016"];
-        [self.mangopayClient.cardObject setCardCvx:@"123"];
+        [self.mangopayClient appendCardNumber:@"" cardExpirationDate:@"1016" cardCvx:@"123"];
         
         // register card
         [self.mangopayClient registerCard:^(NSDictionary *response, NSError *error) {
@@ -77,7 +75,7 @@ static NSString * const URLString = @"https://sample";
     sessionConfig.timeoutIntervalForRequest = 60.0;
     NSURLSession* session = [NSURLSession sessionWithConfiguration:sessionConfig delegate:nil delegateQueue:nil];
     
-    NSURL* URL = [NSURL URLWithString:URLString];
+    NSURL* URL = [NSURL URLWithString:serverURL];
     NSDictionary* URLParams = @{@"lang": language,
                                 @"customerEmail": email,
                                 @"currency": currency,};

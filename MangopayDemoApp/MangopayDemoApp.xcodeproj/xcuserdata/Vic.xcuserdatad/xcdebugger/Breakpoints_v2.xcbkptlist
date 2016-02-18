@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "Yes"
             filePath = "../mangopay/MPAPIClient.m"
-            timestampString = "477484965.546957"
+            timestampString = "477490231.672252"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "45"
-            endingLineNumber = "45"
+            startingLineNumber = "56"
+            endingLineNumber = "56"
             landmarkName = "-registerCard:"
             landmarkType = "5">
             <Actions>
@@ -34,11 +34,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "Yes"
             filePath = "../mangopay/MPAPIClient.m"
-            timestampString = "477485017.981306"
+            timestampString = "477490231.672252"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "114"
-            endingLineNumber = "114"
+            startingLineNumber = "125"
+            endingLineNumber = "125"
             landmarkName = "-sendRegistrationData:completionHandler:"
             landmarkType = "5">
             <Actions>
@@ -58,11 +58,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "Yes"
             filePath = "../mangopay/MPAPIClient.m"
-            timestampString = "477485324.131102"
+            timestampString = "477490231.672252"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "106"
-            endingLineNumber = "106"
+            startingLineNumber = "117"
+            endingLineNumber = "117"
             landmarkName = "-sendRegistrationData:completionHandler:"
             landmarkType = "5">
             <Actions>
@@ -82,11 +82,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "Yes"
             filePath = "../mangopay/MPAPIClient.m"
-            timestampString = "477485424.54848"
+            timestampString = "477490231.672252"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "36"
-            endingLineNumber = "36"
+            startingLineNumber = "47"
+            endingLineNumber = "47"
             landmarkName = "-registerCard:"
             landmarkType = "5">
             <Actions>

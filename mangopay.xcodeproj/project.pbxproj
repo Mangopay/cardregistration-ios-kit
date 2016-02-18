@@ -24,7 +24,7 @@
 /* Begin PBXBuildFile section */
 		1C2F65AC1C74F36200A28808 /* MPAPIClient.h in Headers */ = {isa = PBXBuildFile; fileRef = 1C2F65AA1C74F36200A28808 /* MPAPIClient.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1C2F65AD1C74F36200A28808 /* MPAPIClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C2F65AB1C74F36200A28808 /* MPAPIClient.m */; };
-		1C2F65B51C74FAF200A28808 /* MPCardObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 1C2F65B31C74FAF200A28808 /* MPCardObject.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1C2F65B51C74FAF200A28808 /* MPCardObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 1C2F65B31C74FAF200A28808 /* MPCardObject.h */; };
 		1C2F65B61C74FAF200A28808 /* MPCardObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C2F65B41C74FAF200A28808 /* MPCardObject.m */; };
 		1CD169081C6A23550026FB82 /* mangopay.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 1CD169071C6A23550026FB82 /* mangopay.h */; };
 		1CD169111C6A23BE0026FB82 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1CD169101C6A23BE0026FB82 /* UIKit.framework */; };

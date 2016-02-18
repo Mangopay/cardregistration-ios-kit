@@ -2,18 +2,15 @@
 //  MPAPIClient.h
 //  mangopay
 //
-//  Created by Victor on 2/17/16.
 //  Copyright © 2016 mangopay. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
-#import "MPCardObject.h"
 
 @interface MPAPIClient : NSObject
 
-@property (nonatomic, strong) MPCardObject* cardObject;
-
 - (instancetype)initWithCardObject:(NSDictionary*)cardObject;
+- (void)appendCardNumber:(NSString*)cardNumber cardExpirationDate:(NSString*)cardExpirationDate cardCvx:(NSString*)cardCvx;
 - (void)registerCard:(void (^)(NSDictionary *response, NSError* error)) completionHandler;
 
 // UTILS

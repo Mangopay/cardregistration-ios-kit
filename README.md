@@ -26,9 +26,7 @@ Initiate MPAPIClient with received cardObject
 
 Collect card info from the user and add it to mangopayClient
 
-    [self.mangopayClient.cardObject setCardNumber:@"0000000000000000"];
-    [self.mangopayClient.cardObject setCardExpirationDate:@"1016"];
-    [self.mangopayClient.cardObject setCardCvx:@"123"];
+    [self.mangopayClient appendCardNumber:@"0000000000000000" cardExpirationDate:@"1016" cardCvx:@"123"];
 
 Register card
 
