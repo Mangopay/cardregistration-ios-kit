@@ -13,7 +13,8 @@ Step 1 - Add the following to your Info.plist will disable ATS in iOS 9.
 ### SAMPLE USAGE
 
 Step 2
-        #import <mangopay/mangopay.h>
+
+    #import <mangopay/mangopay.h>
 
 Step 3
 
@@ -24,7 +25,7 @@ Step 3
 Initiate MPAPIClient with received cardObject
 
     self.mangopayClient = [[MPAPIClient alloc] initWithCardObject:responseObject];
-  
+
 Collect card info from the user and add it to mangopayClient
 
     [self.mangopayClient.cardObject setCardNumber:@"4970100000000154"];
@@ -34,6 +35,10 @@ Collect card info from the user and add it to mangopayClient
 Register card
 
     [self.mangopayClient registerCard:^(NSDictionary *response, NSError *error) {
-
-            
+          if (error) {
+              NSLog(@"Error: %@", error);
+          }
+          else { // card was VALIDATED
+              NSLog(@"VALIDATED %@", response);
+          }
     }];
