@@ -10,7 +10,6 @@
 @interface MPCardObject : NSObject
 
 - (instancetype)initWithDict:(NSDictionary *)dict;
-- (void)printCardObject;
 
 @property (nonatomic, strong) NSString *cardRegistrationURL;
 @property (nonatomic, strong) NSString *preregistrationData;

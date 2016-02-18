@@ -27,11 +27,6 @@
     return self;
 }
 
-- (void)printCardObject {
-    
-    NSLog(@"\nCardObject\ncardRegistrationURL:   %@\npreregistrationData:   %@\naccessKey:   %@\nclientId:   %@\nbaseURL:   %@\ncardType:   %@\ncardNumber:   %@\ncardExpirationDate:   %@\ncardCvx:   %@\ncardPreregistrationId:   %@", self.cardRegistrationURL, self.preregistrationData, self.accessKey, self.clientId, self.baseURL, self.cardType, self.cardNumber, self.cardExpirationDate, self.cardCvx, self.cardCvx);
-}
-
 - (void)dealloc {
     
     self.cardRegistrationURL = nil;
