@@ -1,4 +1,4 @@
-# MANGOPAY cardregistration-ios-kit
+# MANGOPAY iOS Kit
 
 
 ## PROJECT SETTINGS
@@ -16,34 +16,26 @@ Adding the following to your Info.plist will disable ATS in iOS 9.
 ## SAMPLE USAGE
 
 
+<code>
+    #import <mangopay/mangopay.h>
+</code>
 
-#import <mangopay/mangopay.h>
-
-
+Initiate MPAPIClient with received cardObject
 <code>
     self.mangopayClient = [[MPAPIClient alloc] initWithCardObject:responseObject];
+</code>
 
-// initiate MPAPIClient with received cardObject
-self.mangopayClient = [[MPAPIClient alloc] initWithCardObject:responseObject];
+// collect card info from the user and add it to mangopayClient
+<code>
+    [self.mangopayClient.cardObject setCardNumber:@"4970100000000154"];
+    [self.mangopayClient.cardObject setCardExpirationDate:@"1016"];
+    [self.mangopayClient.cardObject setCardCvx:@"123"];
+</code>
 
-// collect card info from the user
-[self.mangopayClient.cardObject setCardNumber:@"4970100000000154"];
-[self.mangopayClient.cardObject setCardExpirationDate:@"1016"];
-[self.mangopayClient.cardObject setCardCvx:@"123"];
+/Register card
+<code>
+    [self.mangopayClient registerCard:^(NSDictionary *response, NSError *error) {
 
-// register card
-[self.mangopayClient registerCard:^(NSDictionary *response, NSError *error) {
-
-if (error) {
-NSLog(@"Error: %@", error);
-}
-else { // card was VALIDATED
-NSLog(@"VALIDATED %@", response);
-}
-
-dispatch_async( dispatch_get_main_queue(), ^{
-[self.activityIndicator stopAnimating];
-});
-}];
-
+        
+    }];
 </code>
