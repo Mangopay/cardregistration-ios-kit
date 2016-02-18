@@ -22,6 +22,7 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		1C2439751C75DC2A00D5A85C /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 1C2439741C75DC2A00D5A85C /* README.md */; };
 		1C2F65AC1C74F36200A28808 /* MPAPIClient.h in Headers */ = {isa = PBXBuildFile; fileRef = 1C2F65AA1C74F36200A28808 /* MPAPIClient.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1C2F65AD1C74F36200A28808 /* MPAPIClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C2F65AB1C74F36200A28808 /* MPAPIClient.m */; };
 		1C2F65B51C74FAF200A28808 /* MPCardObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 1C2F65B31C74FAF200A28808 /* MPCardObject.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -55,6 +56,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		1C2439741C75DC2A00D5A85C /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = mangopay/README.md; sourceTree = "<group>"; };
 		1C2F65AA1C74F36200A28808 /* MPAPIClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPAPIClient.h; sourceTree = "<group>"; };
 		1C2F65AB1C74F36200A28808 /* MPAPIClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPAPIClient.m; sourceTree = "<group>"; };
 		1C2F65B31C74FAF200A28808 /* MPCardObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPCardObject.h; sourceTree = "<group>"; };
@@ -79,6 +81,7 @@
 		1CD168FB1C6A23550026FB82 = {
 			isa = PBXGroup;
 			children = (
+				1C2439741C75DC2A00D5A85C /* README.md */,
 				1CD169061C6A23550026FB82 /* mangopay */,
 				1CD169141C6A25200026FB82 /* Frameworks */,
 				1CD169051C6A23550026FB82 /* Products */,
@@ -219,6 +222,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1C2439751C75DC2A00D5A85C /* README.md in Sources */,
 				1C2F65B61C74FAF200A28808 /* MPCardObject.m in Sources */,
 				1C2F65AD1C74F36200A28808 /* MPAPIClient.m in Sources */,
 			);
