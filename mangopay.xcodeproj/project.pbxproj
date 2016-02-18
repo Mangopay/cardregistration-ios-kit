@@ -24,7 +24,6 @@
 /* Begin PBXBuildFile section */
 		1C2F65AC1C74F36200A28808 /* MPAPIClient.h in Headers */ = {isa = PBXBuildFile; fileRef = 1C2F65AA1C74F36200A28808 /* MPAPIClient.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1C2F65AD1C74F36200A28808 /* MPAPIClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C2F65AB1C74F36200A28808 /* MPAPIClient.m */; };
-		1C2F65B01C74F61000A28808 /* MPConstants.h in Headers */ = {isa = PBXBuildFile; fileRef = 1C2F65AE1C74F61000A28808 /* MPConstants.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1C2F65B51C74FAF200A28808 /* MPCardObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 1C2F65B31C74FAF200A28808 /* MPCardObject.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1C2F65B61C74FAF200A28808 /* MPCardObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C2F65B41C74FAF200A28808 /* MPCardObject.m */; };
 		1CD169081C6A23550026FB82 /* mangopay.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 1CD169071C6A23550026FB82 /* mangopay.h */; };
@@ -58,7 +57,6 @@
 /* Begin PBXFileReference section */
 		1C2F65AA1C74F36200A28808 /* MPAPIClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPAPIClient.h; sourceTree = "<group>"; };
 		1C2F65AB1C74F36200A28808 /* MPAPIClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPAPIClient.m; sourceTree = "<group>"; };
-		1C2F65AE1C74F61000A28808 /* MPConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPConstants.h; sourceTree = "<group>"; };
 		1C2F65B31C74FAF200A28808 /* MPCardObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPCardObject.h; sourceTree = "<group>"; };
 		1C2F65B41C74FAF200A28808 /* MPCardObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPCardObject.m; sourceTree = "<group>"; };
 		1CD169041C6A23550026FB82 /* libmangopay.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libmangopay.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -99,7 +97,6 @@
 			isa = PBXGroup;
 			children = (
 				1CD169071C6A23550026FB82 /* mangopay.h */,
-				1C2F65AE1C74F61000A28808 /* MPConstants.h */,
 				1C2F65AA1C74F36200A28808 /* MPAPIClient.h */,
 				1C2F65AB1C74F36200A28808 /* MPAPIClient.m */,
 				1C2F65B31C74FAF200A28808 /* MPCardObject.h */,
@@ -124,9 +121,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				1CD169131C6A24420026FB82 /* mangopay.h in Headers */,
-				1C2F65B51C74FAF200A28808 /* MPCardObject.h in Headers */,
-				1C2F65B01C74F61000A28808 /* MPConstants.h in Headers */,
 				1C2F65AC1C74F36200A28808 /* MPAPIClient.h in Headers */,
+				1C2F65B51C74FAF200A28808 /* MPCardObject.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

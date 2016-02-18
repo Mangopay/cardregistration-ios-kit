@@ -7,8 +7,6 @@
 
 #import <UIKit/UIKit.h>
 #import <mangopay/MPAPIClient.h>
-#import <mangopay/MPConstants.h>
-#import <mangopay/MPCardObject.h>
 
 /*
  <key>NSAppTransportSecurity</key>
