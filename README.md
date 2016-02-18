@@ -1,4 +1,4 @@
-## MANGOPAY iOS
+## MANGOPAY iOS Kit
 
 ### PROJECT SETTINGS
 
@@ -10,9 +10,7 @@ Step 1 - Add the following to your Info.plist will disable ATS in iOS 9.
       <true/>
     </dict>
 
-### SAMPLE USAGE
-
-Step 2
+Step 2 - Import header
 
     #import <mangopay/mangopay.h>
 
@@ -28,7 +26,7 @@ Initiate MPAPIClient with received cardObject
 
 Collect card info from the user and add it to mangopayClient
 
-    [self.mangopayClient.cardObject setCardNumber:@"4970100000000154"];
+    [self.mangopayClient.cardObject setCardNumber:@"0000000000000000"];
     [self.mangopayClient.cardObject setCardExpirationDate:@"1016"];
     [self.mangopayClient.cardObject setCardCvx:@"123"];
 
