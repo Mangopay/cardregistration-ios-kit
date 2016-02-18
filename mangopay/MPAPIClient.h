@@ -7,14 +7,18 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "MPConstants.h"
 #import "MPCardObject.h"
 
 @interface MPAPIClient : NSObject
 
-- (instancetype)initWithCardObject:(NSDictionary*)cardObject;
-- (void)registerCard:(void (^)(NSDictionary *response, MPErrorType error)) completionHandler;
-
 @property (nonatomic, strong) MPCardObject* cardObject;
+
+- (instancetype)initWithCardObject:(NSDictionary*)cardObject;
+- (void)registerCard:(void (^)(NSDictionary *response, NSError* error)) completionHandler;
+
+// UTILS
++ (NSString*)NSStringFromQueryParameters:(NSDictionary*)queryParameters;
++ (NSURL*)NSURLByAppendingQueryParameters:(NSURL*)URL  queryParameters:(NSDictionary*) queryParameters;
++ (NSDictionary*)objectFromJSONdata:(NSData*)data;
 
 @end

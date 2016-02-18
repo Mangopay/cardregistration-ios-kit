@@ -8,21 +8,18 @@
 
 #import "MPAPIClient.h"
 
-
 @implementation MPAPIClient
 
 - (instancetype)initWithCardObject:(NSDictionary*)cardObject
 {
     self = [super init];
-    if (self) {
+    if (self)
         self.cardObject = [[MPCardObject alloc] initWithDict:cardObject];
-        [self.cardObject printCardObject];
-    }
     
     return self;
 }
 
-- (void)registerCard:(void (^)(NSDictionary *response, MPErrorType error)) completionHandler
+- (void)registerCard:(void (^)(NSDictionary *response, NSError* error)) completionHandler
 {
     NSURLSessionConfiguration* sessionConfig = [NSURLSessionConfiguration defaultSessionConfiguration];
     sessionConfig.timeoutIntervalForRequest = 60.0;
@@ -35,43 +32,63 @@
                                 @"cardCvx": self.cardObject.cardCvx,
                                 @"data": self.cardObject.preregistrationData, };
     
-    URL = NSURLByAppendingQueryParameters(URL, URLParams);
+    URL = [MPAPIClient NSURLByAppendingQueryParameters:URL queryParameters:URLParams];
     NSMutableURLRequest* request = [NSMutableURLRequest requestWithURL:URL];
     request.HTTPMethod = @"POST";
     
     NSURLSessionDataTask* task = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
         
-        if (error == nil)
+        if (error == nil) {
             if (data) {
+        
                 NSString *responseString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
                 if (responseString) {
-                    
-                    [self sendRegistrationData:responseString
-                             completionHandler:^(NSDictionary *responseDictionary, MPErrorType error) {
-                                 
-                            if (error != MPErrorTypeNone) {
-                                completionHandler(nil, error);
-                                return;
-                            }
-                             
-                            completionHandler(responseDictionary, error);
-                    }];
+
+                    if ([responseString rangeOfString:@"errorCode"].location != NSNotFound) {
+                        
+                        NSString* errorString = [responseString stringByReplacingOccurrencesOfString:@"errorCode=" withString:@""];
+                        NSError *error = [NSError errorWithDomain:@"MP"
+                                                             code:[errorString integerValue]
+                                                         userInfo:@{NSLocalizedDescriptionKey: responseString}];
+                        completionHandler(nil, error);
+                    }
+                    else {
+                        
+                        [self sendRegistrationData:responseString
+                                 completionHandler:^(NSDictionary *responseDictionary, NSError* error) {
+
+                                if (error) {
+                                    completionHandler(nil, error);
+                                    return;
+                                }
+
+                                completionHandler(responseDictionary, error);
+                        }];
+                    }
                 }
-                else
-                    completionHandler(nil, MPErrorType1);
+                else {
+                    NSError *error = [NSError errorWithDomain:@"MP"
+                                                         code:[(NSHTTPURLResponse*)response statusCode]
+                                                     userInfo:@{NSLocalizedDescriptionKey: @"Invalid response data"}];
+                    completionHandler(nil, error);
+                }
             }
-            else
-               completionHandler(nil, MPErrorType1);
+            else {
+                NSError *error = [NSError errorWithDomain:@"MP"
+                                                     code:[(NSHTTPURLResponse*)response statusCode]
+                                                 userInfo:@{NSLocalizedDescriptionKey: @"Invalid response data"}];
+                completionHandler(nil, error);
+            }
+        }
         else {
-            completionHandler(nil, MPErrorType1);
+            completionHandler(nil, error);
             return;
         }
     }];
     [task resume];
 }
 
-
-- (void)sendRegistrationData:(NSString*)registrationData completionHandler:(void (^)(NSDictionary *responseDictionary, MPErrorType error)) completionHandler
+- (void)sendRegistrationData:(NSString*)registrationData completionHandler:(void (^)(NSDictionary *responseDictionary, NSError* error)) completionHandler
 {
     NSURLSessionConfiguration* sessionConfig = [NSURLSessionConfiguration defaultSessionConfiguration];
     sessionConfig.timeoutIntervalForRequest = 60.0;
@@ -88,24 +105,83 @@
     NSURL* URL = [NSURL URLWithString:URLString];
     NSMutableURLRequest* request = [NSMutableURLRequest requestWithURL:URL];
     request.HTTPMethod = @"POST";
-    request.HTTPBody = [NSStringFromQueryParameters(bodyParameters) dataUsingEncoding:NSUTF8StringEncoding];
+    request.HTTPBody = [[MPAPIClient NSStringFromQueryParameters:bodyParameters] dataUsingEncoding:NSUTF8StringEncoding];
 
     NSURLSessionDataTask* task = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
         
-        if (error == nil)
-            if (data) {
-                NSDictionary* responseObject = objectFromJSONdata(data);
-                if (responseObject)
-                    completionHandler(responseObject, MPErrorTypeNone);
-                else
-                    completionHandler(nil, MPErrorType1);
+        if (error == nil) {
+            NSDictionary* responseObject = [MPAPIClient objectFromJSONdata:data];
+            if (responseObject) {
+                
+                if ([responseObject[@"Status"] isEqualToString:@"VALIDATED"]) {
+                    completionHandler(responseObject, nil);
+                }
+                else {
+                    NSError *error = [NSError errorWithDomain:@"world"
+                                                           code:[(NSHTTPURLResponse*)response statusCode]
+                                                       userInfo:@{NSLocalizedDescriptionKey: responseObject[@"Message"]}];
+                    completionHandler(responseObject, error);
+                }
             }
-            else
-             completionHandler(nil, MPErrorType1);
-        else
-            completionHandler(nil, MPErrorType1);
+            else {
+                NSError *error = [NSError errorWithDomain:@"MP"
+                                                     code:[(NSHTTPURLResponse*)response statusCode]
+                                                 userInfo:@{NSLocalizedDescriptionKey: @"Invalid response data"}];
+                completionHandler(nil, error);
+            }
+        }
+        else {
+            NSError *error = [NSError errorWithDomain:@"MP"
+                                                 code:[(NSHTTPURLResponse*)response statusCode]
+                                             userInfo:error.userInfo];
+            completionHandler(nil, error);
+        }
     }];
     [task resume];
+}
+
+/*
+ * Utils
+ */
+
+/**
+ This creates a new query parameters string from the given NSDictionary.
+ @param queryParameters The input dictionary.
+ @return The created parameters string.
+ */
++ (NSString*)NSStringFromQueryParameters:(NSDictionary*)queryParameters {
+    NSMutableArray* parts = [NSMutableArray array];
+    [queryParameters enumerateKeysAndObjectsUsingBlock:^(id key, id value, BOOL *stop) {
+        NSString *part = [NSString stringWithFormat: @"%@=%@",
+                          [key stringByAddingPercentEscapesUsingEncoding: NSUTF8StringEncoding],
+                          [value stringByAddingPercentEscapesUsingEncoding: NSUTF8StringEncoding]
+                          ];
+        [parts addObject:part];
+    }];
+    return [parts componentsJoinedByString: @"&"];
+}
+
+/**
+ Creates a new URL by adding the given query parameters.
+ @param URL The input URL.
+ @param queryParameters The query parameter dictionary to add.
+ @return A new NSURL.
+ */
++ (NSURL*)NSURLByAppendingQueryParameters:(NSURL*)URL  queryParameters:(NSDictionary*) queryParameters
+{
+    NSString* URLString = [NSString stringWithFormat:@"%@?%@",
+                           [URL absoluteString],
+                           [self NSStringFromQueryParameters:queryParameters]
+                           ];
+    return [NSURL URLWithString:URLString];
+}
+
++ (NSDictionary*)objectFromJSONdata:(NSData*)data
+{
+    if (data)
+        return [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:NULL];
+    
+    return nil;
 }
 
 @end
