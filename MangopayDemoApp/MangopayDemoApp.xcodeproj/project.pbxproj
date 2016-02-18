@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1C2439771C75DDCC00D5A85C /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 1C2439761C75DDCC00D5A85C /* README.md */; };
+		1C24397A1C75DF2500D5A85C /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 1C2439791C75DF2500D5A85C /* README.md */; };
 		1C6FD4F81C6D2CAF00B2B64C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C6FD4F71C6D2CAF00B2B64C /* main.m */; };
 		1C6FD4FB1C6D2CAF00B2B64C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C6FD4FA1C6D2CAF00B2B64C /* AppDelegate.m */; };
 		1C6FD4FE1C6D2CAF00B2B64C /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C6FD4FD1C6D2CAF00B2B64C /* ViewController.m */; };
@@ -35,7 +35,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		1C2439761C75DDCC00D5A85C /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		1C2439791C75DF2500D5A85C /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		1C6FD4F31C6D2CAF00B2B64C /* MangopayDemoApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MangopayDemoApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1C6FD4F71C6D2CAF00B2B64C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		1C6FD4F91C6D2CAF00B2B64C /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -64,7 +64,7 @@
 		1C6FD4EA1C6D2CAF00B2B64C = {
 			isa = PBXGroup;
 			children = (
-				1C2439761C75DDCC00D5A85C /* README.md */,
+				1C2439791C75DF2500D5A85C /* README.md */,
 				1C6FD50D1C6D2D6E00B2B64C /* mangopay.xcodeproj */,
 				1C6FD4F51C6D2CAF00B2B64C /* MangopayDemoApp */,
 				1C6FD4F41C6D2CAF00B2B64C /* Products */,
@@ -200,7 +200,7 @@
 			files = (
 				1C6FD4FE1C6D2CAF00B2B64C /* ViewController.m in Sources */,
 				1C6FD4FB1C6D2CAF00B2B64C /* AppDelegate.m in Sources */,
-				1C2439771C75DDCC00D5A85C /* README.md in Sources */,
+				1C24397A1C75DF2500D5A85C /* README.md in Sources */,
 				1C6FD4F81C6D2CAF00B2B64C /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
