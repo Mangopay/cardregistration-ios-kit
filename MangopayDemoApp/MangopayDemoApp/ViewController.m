@@ -11,9 +11,9 @@
 
 
 static NSString * const language = @"en";
-static NSString * const email = @"cata_craciun@hotmail.com";
+static NSString * const email = @"foo@bar.com";
 static NSString * const currency = @"EUR";
-static NSString * const serverURL = @"";
+static NSString * const serverURL = @"http://demo-mangopay.rhcloud.com/card-registration";
 
 
 @interface ViewController ()
@@ -32,17 +32,13 @@ static NSString * const serverURL = @"";
         
         if (error) {
             NSLog(@"URL Session Task Failed: %@", [error localizedDescription]);
-            dispatch_async( dispatch_get_main_queue(), ^{
-                [self.activityIndicator stopAnimating];
-            });
+            [self end];
             return;
         }
         
         if (httpResp.statusCode != 200) {
             NSLog(@"Handle status code %ld", (long)httpResp.statusCode);
-            dispatch_async( dispatch_get_main_queue(), ^{
-                [self.activityIndicator stopAnimating];
-            });
+            [self end];
             return;
         }
         
@@ -50,23 +46,25 @@ static NSString * const serverURL = @"";
         self.mangopayClient = [[MPAPIClient alloc] initWithCardObject:responseObject];
         
         // collect card info from the user
-        [self.mangopayClient appendCardNumber:@"" cardExpirationDate:@"1016" cardCvx:@"123"];
+        [self.mangopayClient appendCardNumber:@"XXXXXXXXXXXXXXXX" cardExpirationDate:@"XXXX" cardCvx:@"XXX"];
         
         // register card
         [self.mangopayClient registerCard:^(NSDictionary *response, NSError *error) {
         
-            if (error) {
+            if (error)
                 NSLog(@"Error: %@", error);
-            }
-            else { // card was VALIDATED
+            else // card was VALIDATED
                 NSLog(@"VALIDATED %@", response);
-            }
             
-            dispatch_async( dispatch_get_main_queue(), ^{
-                [self.activityIndicator stopAnimating];
-            });
+            [self end];
         }];
     }];
+}
+
+- (void)end {
+    dispatch_async( dispatch_get_main_queue(), ^{
+        [self.activityIndicator stopAnimating];
+    });
 }
 
 - (void)generateCardRegistration:(void (^)(NSDictionary *responseDictionary, NSHTTPURLResponse *httpResp, NSError* error)) completionHandler
