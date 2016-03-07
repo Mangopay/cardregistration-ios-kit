@@ -6,28 +6,31 @@
 //
 
 #import "MPAPIClient.h"
-#import "MPCardObject.h"
+#import "MPCardInfoObject.h"
+#import "MPCardApiObject.h"
 
 @interface MPAPIClient ()
-@property (nonatomic, strong) MPCardObject* cardObject;
+@property (nonatomic, strong) MPCardInfoObject* cardInfo;
+@property (nonatomic, strong) MPCardApiObject* cardAPI;
 @end
 
 @implementation MPAPIClient
 
-- (instancetype)initWithCardObject:(NSDictionary*)cardObject
+- (instancetype)initWithCard:(NSDictionary*)infoObject
 {
     self = [super init];
     if (self)
-        self.cardObject = [[MPCardObject alloc] initWithDict:cardObject];
+        self.cardInfo = [[MPCardInfoObject alloc] initWithDict:infoObject];
+        self.cardAPI = [[MPCardApiObject alloc] initWithDict:infoObject];
     
     return self;
 }
 
-- (void)appendCardNumber:(NSString*)cardNumber cardExpirationDate:(NSString*)cardExpirationDate cardCvx:(NSString*)cardCvx {
+- (void)appendCardInfo:(NSString*)cardNumber cardExpirationDate:(NSString*)cardExpirationDate cardCvx:(NSString*)cardCvx {
     
-    [self.cardObject setCardNumber:cardNumber];
-    [self.cardObject setCardExpirationDate:cardExpirationDate];
-    [self.cardObject setCardCvx:cardCvx];
+    [self.cardInfo setCardNumber:cardNumber];
+    [self.cardInfo setCardExpirationDate:cardExpirationDate];
+    [self.cardInfo setCardCvx:cardCvx];
 }
 
 - (void)registerCard:(void (^)(NSDictionary *response, NSError* error)) completionHandler
@@ -36,12 +39,15 @@
     sessionConfig.timeoutIntervalForRequest = 60.0;
     NSURLSession* session = [NSURLSession sessionWithConfiguration:sessionConfig delegate:nil delegateQueue:nil];
     
-    NSURL* URL = [NSURL URLWithString:self.cardObject.cardRegistrationURL];
-    NSDictionary* URLParams = @{@"accessKeyRef": self.cardObject.accessKey,
-                                @"cardNumber": self.cardObject.cardNumber,
-                                @"cardExpirationDate": self.cardObject.cardExpirationDate,
-                                @"cardCvx": self.cardObject.cardCvx,
-                                @"data": self.cardObject.preregistrationData, };
+    NSURL* URL = [NSURL URLWithString:self.cardAPI.cardRegistrationURL];
+    NSDictionary* URLParams = @{
+                                /* API info */
+                                @"accessKeyRef": self.cardAPI.accessKey,
+                                @"data": self.cardAPI.preregistrationData,
+                                /* Card info */
+                                @"cardExpirationDate": self.cardInfo.cardExpirationDate,
+                                @"cardCvx": self.cardInfo.cardCvx,
+                                @"cardNumber": self.cardInfo.cardNumber,};
     
     URL = [MPAPIClient NSURLByAppendingQueryParameters:URL queryParameters:URLParams];
     NSMutableURLRequest* request = [NSMutableURLRequest requestWithURL:URL];
@@ -106,12 +112,12 @@
     NSURLSession* session = [NSURLSession sessionWithConfiguration:sessionConfig delegate:nil delegateQueue:nil];
 
     NSString* URLString = [NSString stringWithFormat:@"%@/v2/%@/CardRegistrations/%@",
-                           self.cardObject.baseURL,
-                           self.cardObject.clientId,
-                           self.cardObject.cardPreregistrationId];
+                           self.cardAPI.baseURL,
+                           self.cardAPI.clientId,
+                           self.cardAPI.cardPreregistrationId];
     
     NSDictionary* bodyParameters = @{@"RegistrationData": registrationData,
-                                     @"Id": self.cardObject.clientId,};
+                                     @"Id": self.cardAPI.clientId,};
     
     NSURL* URL = [NSURL URLWithString:URLString];
     NSMutableURLRequest* request = [NSMutableURLRequest requestWithURL:URL];

@@ -25,8 +25,7 @@ static NSString * const serverURL = @"http://demo-mangopay.rhcloud.com/card-regi
     [super viewDidLoad];
  
     [self.activityIndicator startAnimating];
-    
-    
+
     [self generateCardRegistration:^(NSDictionary *responseObject, NSHTTPURLResponse *httpResp, NSError* error) {
         
         if (error) {
@@ -42,10 +41,10 @@ static NSString * const serverURL = @"http://demo-mangopay.rhcloud.com/card-regi
         }
         
         // initiate MPAPIClient with received cardObject
-        self.mangopayClient = [[MPAPIClient alloc] initWithCardObject:responseObject];
+        self.mangopayClient = [[MPAPIClient alloc] initWithCard:responseObject];
         
         // collect card info from the user
-        [self.mangopayClient appendCardNumber:@"XXXXXXXXXXXXXXXX" cardExpirationDate:@"XXXX" cardCvx:@"XXX"];
+        [self.mangopayClient appendCardInfo:@"XXXXXXXXXXXXXXXX" cardExpirationDate:@"XXXX" cardCvx:@"XXX"];
         
         // register card
         [self.mangopayClient registerCard:^(NSDictionary *response, NSError *error) {

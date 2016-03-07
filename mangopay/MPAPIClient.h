@@ -9,8 +9,8 @@
 
 @interface MPAPIClient : NSObject
 
-- (instancetype)initWithCardObject:(NSDictionary*)cardObject;
-- (void)appendCardNumber:(NSString*)cardNumber cardExpirationDate:(NSString*)cardExpirationDate cardCvx:(NSString*)cardCvx;
+- (instancetype)initWithCard:(NSDictionary*)infoObject;
+- (void)appendCardInfo:(NSString*)cardNumber cardExpirationDate:(NSString*)cardExpirationDate cardCvx:(NSString*)cardCvx;
 - (void)registerCard:(void (^)(NSDictionary *response, NSError* error)) completionHandler;
 
 // UTILS
