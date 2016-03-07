@@ -2,7 +2,6 @@
 //  main.m
 //  MangopayDemoApp
 //
-//  Created by Victor on 2/11/16.
 //  Copyright © 2016 mangopay. All rights reserved.
 //
 
