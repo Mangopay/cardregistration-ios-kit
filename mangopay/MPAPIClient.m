@@ -128,7 +128,7 @@
                     completionHandler(responseObject, nil);
                 }
                 else {
-                    NSError *error = [NSError errorWithDomain:@"world"
+                    NSError *error = [NSError errorWithDomain:@"MP"
                                                            code:[(NSHTTPURLResponse*)response statusCode]
                                                        userInfo:@{NSLocalizedDescriptionKey: responseObject[@"Message"]}];
                     completionHandler(responseObject, error);
@@ -142,10 +142,10 @@
             }
         }
         else {
-            NSError *error = [NSError errorWithDomain:@"MP"
+            NSError *errorRegistration = [NSError errorWithDomain:@"MP"
                                                  code:[(NSHTTPURLResponse*)response statusCode]
                                              userInfo:error.userInfo];
-            completionHandler(nil, error);
+            completionHandler(nil, errorRegistration);
         }
     }];
     [task resume];
