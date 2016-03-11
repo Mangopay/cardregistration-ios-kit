@@ -2,8 +2,6 @@
 //  MPAPIClient.m
 //  mangopay
 //
-//  Copyright © 2016 mangopay. All rights reserved.
-//
 
 #import "MPAPIClient.h"
 #import "MPCardInfoObject.h"

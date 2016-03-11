@@ -2,8 +2,6 @@
 //  AppDelegate.m
 //  MangopayDemoApp
 //
-//  Copyright © 2016 mangopay. All rights reserved.
-//
 
 #import "AppDelegate.h"
 

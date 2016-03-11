@@ -2,8 +2,6 @@
 //  MPCardInfoObject.m
 //  mangopay
 //
-//  Copyright © 2016 mangopay. All rights reserved.
-//
 
 #import "MPCardInfoObject.h"
 

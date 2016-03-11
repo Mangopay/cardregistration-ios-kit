@@ -2,8 +2,6 @@
 //  ViewController.m
 //  MangopayDemoApp
 //
-//  Copyright © 2016 mangopay. All rights reserved.
-//
 
 #import "ViewController.h"
 #import <mangopay/mangopay.h>
