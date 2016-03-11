@@ -6,7 +6,6 @@
 #import "ViewController.h"
 #import <mangopay/mangopay.h>
 
-
 static NSString * const language = @"en";
 static NSString * const email = @"foo@bar.com";
 static NSString * const currency = @"EUR";
