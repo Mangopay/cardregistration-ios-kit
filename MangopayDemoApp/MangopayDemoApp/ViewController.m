@@ -78,7 +78,7 @@ static NSString * const serverURL = @"http://demo-mangopay.rhcloud.com/card-regi
     request.HTTPMethod = @"GET";
     
     NSURLSessionDataTask* task = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-NSLog(@"response %@", response);
+
         if (error == nil) { // Success
             NSHTTPURLResponse *httpResp = (NSHTTPURLResponse*) response;
             if (httpResp.statusCode == 200) {
@@ -97,9 +97,8 @@ NSLog(@"response %@", response);
             else
                 completionHandler(nil, httpResp, nil);
         }
-        else { NSLog(@"error %@", error);
+        else
             completionHandler(nil, nil, error);
-        }
     }];
     [task resume];
 }
