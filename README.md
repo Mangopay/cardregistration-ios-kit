@@ -100,3 +100,19 @@ Register card
               NSLog(@"VALIDATED %@", response);
           }
     }];
+
+Card Object
+
+    @property (nonatomic, strong) NSString *cardType;
+    @property (nonatomic, strong) NSString *cardNumber;
+    @property (nonatomic, strong) NSString *cardExpirationDate;
+    @property (nonatomic, strong) NSString *cardCvx;
+
+Card Api Object
+
+    @property (nonatomic, strong) NSString *cardRegistrationURL;
+    @property (nonatomic, strong) NSString *preregistrationData;
+    @property (nonatomic, strong) NSString *accessKey;
+    @property (nonatomic, strong) NSString *clientId;
+    @property (nonatomic, strong) NSString *baseURL;
+    @property (nonatomic, strong) NSString *cardPreregistrationId;
