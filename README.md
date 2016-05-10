@@ -72,21 +72,33 @@
 ```
 
 ### Step 2 - Import library
-* Import mangopay.framework into your project (make sure "Copy items if needed" is seleted)
+* Import `mangopay.framework` into your project (make sure "Copy items if needed" is selected)
 * Import header:
 
 ```objective-c
 #import <mangopay/mangopay.h>
 ```
 
-### Step 3 - Use the Mangopay card registration API
+### Step 3 - Using the MANGOPAY card registration API
 
-Because the personal passphrase cannot be set in the application due to obviously security reasons, this requires
-an own server instance which has this sensitive information kept private. Using this library you are able to tokenize 
-a card and send it to your server, and then you are able to charge the customer. The flow is described in the following
-diagram: https://docs.mangopay.com/api-references/payins/payindirectcard.
+Because the MANGOPAY Passphrase cannot be set in the application due to obviously security reasons, this requires an own server instance which has this sensitive information kept private. Using this library you are able to tokenize a card and send it to your server, and then you are able to charge the customer. The flow is described in [this diagram](https://docs.mangopay.com/api-references/payins/payindirectcard).
 
 #### Usage:
+##### Update your webapp
+You should already have a webapp (the service on your server that communicates with your iOS app) and you need to add this new card registration functionality - this includes the API call to MANGOPAY ([more info](https://docs.mangopay.com/api-references/card-registration/)). You will then provide the iOS kit with the `serverURL` to access this functionality ([configured here](https://github.com/Mangopay/cardregistration-ios-kit/blob/master/MangopayDemoApp/MangopayDemoApp/ViewController.m#L12)). The `serverURL` should return a JSON response (which has the information obtained from the MANGOPAY API) as follows:
+
+```javascript
+{
+  "accessKey": "1X0m87dmM2LiwFgxPLBJ",
+  "baseURL": "https://api.sandbox.mangopay.com",
+  "cardPreregistrationId": "12444838",
+  "cardRegistrationURL": "https://homologation-webpayment.payline.com/webpayment/getToken",
+  "cardType": "CB_VISA_MASTERCARD",
+  "clientId": "sdk-unit-tests",
+  "preregistrationData": "ObMObfSdwRfyE4QClGtUc6um8zvFYamY_t-LNSwKAxBisfd7z3cTgS83cCwyP9Gp7qGR3aNxrLUiPbx-Z--VxQ"
+}
+```
+
 ##### Declare MPAPIClient
 
 ```objective-c
@@ -96,7 +108,7 @@ diagram: https://docs.mangopay.com/api-references/payins/payindirectcard.
 ```
 
 ##### Initiate MPAPIClient with received cardObject
-The first request must be made to your personal server. You must receive the following object in response:
+You can then make use of the information received from your webapp:
 
 ```objective-c
 @property (nonatomic, strong) NSString *cardRegistrationURL;
@@ -106,9 +118,6 @@ The first request must be made to your personal server. You must receive the fol
 @property (nonatomic, strong) NSString *baseURL;
 @property (nonatomic, strong) NSString *cardPreregistrationId;
 ```
-
-A demo of server responding with this object is available here: 
-https://github.com/codegile/mangopay-card-registration-demo
 
 This object is required to instantiate the MAPIClient: 
 
