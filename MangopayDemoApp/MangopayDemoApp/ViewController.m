@@ -6,9 +6,6 @@
 #import "ViewController.h"
 #import <mangopay/mangopay.h>
 
-static NSString * const language = @"en";
-static NSString * const email = @"foo@bar.com";
-static NSString * const currency = @"EUR";
 static NSString * const serverURL = @"http://demo-mangopay.rhcloud.com/card-registration";
 
 
@@ -69,11 +66,7 @@ static NSString * const serverURL = @"http://demo-mangopay.rhcloud.com/card-regi
     NSURLSession* session = [NSURLSession sessionWithConfiguration:sessionConfig delegate:nil delegateQueue:nil];
     
     NSURL* URL = [NSURL URLWithString:serverURL];
-    NSDictionary* URLParams = @{@"lang": language,
-                                @"customerEmail": email,
-                                @"currency": currency,};
-    
-    URL = [MPAPIClient NSURLByAppendingQueryParameters:URL queryParameters:URLParams];
+
     NSMutableURLRequest* request = [NSMutableURLRequest requestWithURL:URL];
     request.HTTPMethod = @"GET";
     
