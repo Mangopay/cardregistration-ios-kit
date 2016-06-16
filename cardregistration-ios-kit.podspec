@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "cardregistration-ios-kit"
-  s.version      = "0.0.2"
+  s.version      = "0.0.3"
   s.summary      = "Mangopay Card Registration iOS Kit"
 
   # This description is used to generate tags and improve search results.
@@ -68,7 +68,7 @@ Pod::Spec.new do |s|
   #  Supports git, hg, bzr, svn and HTTP.
   #
 
-  s.source       = { :git => "https://github.com/peertopark/cardregistration-ios-kit.git", :tag => "0.0.2" }
+  s.source       = { :git => "https://github.com/peertopark/cardregistration-ios-kit.git", :tag => "0.0.3" }
 
 
   # ――― Source Code ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
@@ -105,7 +105,7 @@ Pod::Spec.new do |s|
   #  the lib prefix of their name.
   #
 
-  # s.framework  = "SomeFramework"
+  s.frameworks   = 'UIKit', 'Foundation'
   # s.frameworks = "SomeFramework", "AnotherFramework"
 
   # s.library   = "iconv"
