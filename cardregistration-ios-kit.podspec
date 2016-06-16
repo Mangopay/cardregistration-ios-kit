@@ -15,9 +15,9 @@ Pod::Spec.new do |s|
   #  summary should be tweet-length, and the description more in depth.
   #
 
-  s.name         = “mangopay-cardregistration-ios-kit”
-  s.version      = “0.0.1”
-  s.summary      = “Mangopay Card Registration iOS Kit"
+  s.name         = "cardregistration-ios-kit"
+  s.version      = "0.0.1"
+  s.summary      = "Mangopay Card Registration iOS Kit"
 
   # This description is used to generate tags and improve search results.
   #   * Think: What does it do? Why did you write it? What is the focus?
@@ -28,7 +28,7 @@ Pod::Spec.new do |s|
 	A Framework with my utilities
                    DESC
 
-  # s.homepage     = "https://github.com/blackleg/blutilities"
+  s.homepage     = "https://www.mangopay.com"
   # s.screenshots  = "www.example.com/screenshots_1.gif", "www.example.com/screenshots_2.gif"
 
 
@@ -68,7 +68,7 @@ Pod::Spec.new do |s|
   #  Supports git, hg, bzr, svn and HTTP.
   #
 
-  s.source       = { :git => "git@github.com:peertopark/cardregistration-ios-kit.git", :tag => ‘0.0.1’ }
+  s.source       = { :git => "https://github.com/peertopark/cardregistration-ios-kit.git", :tag => "0.0.1" }
 
 
   # ――― Source Code ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
@@ -79,10 +79,10 @@ Pod::Spec.new do |s|
   #  Not including the public_header_files will make all headers public.
   #
 
-  s.source_files  = “mangopay/*.{h,m}"
-  s.exclude_files = "Classes/Exclude"
+  s.source_files  = "mangopay/*.{h,m}"
+  #s.exclude_files = "Classes/Exclude"
 
-  # s.public_header_files = "Classes/**/*.h"
+  #s.public_header_files = "mangopay/mangopay.h"
 
 
   # ――― Resources ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
