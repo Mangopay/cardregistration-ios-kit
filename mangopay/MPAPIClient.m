@@ -11,6 +11,7 @@
 @property (nonatomic, strong) MPCardInfoObject* cardInfo;
 @property (nonatomic, strong) MPCardApiObject* cardAPI;
 - (NSURLSession *) getSession;
+- (NSMutableURLRequest *) buildRequest:(NSURL *) url method:(NSString *) method;
 @end
 
 @implementation MPAPIClient
@@ -34,6 +35,24 @@
 
 - (void)getRegisterData:(void (^)(NSDictionary *, NSError *)) completionHandler {
     
+    NSURL* URL = [NSURL URLWithString:self.cardAPI.cardRegistrationURL];
+    NSDictionary* URLParams = @{
+                                /* API info */
+                                @"accessKeyRef": self.cardAPI.accessKey,
+                                @"data": self.cardAPI.preregistrationData,
+                                /* Card info */
+                                @"cardExpirationDate": self.cardInfo.cardExpirationDate,
+                                @"cardCvx": self.cardInfo.cardCvx,
+                                @"cardNumber": self.cardInfo.cardNumber,};
+    
+    URL = [MPAPIClient NSURLByAppendingQueryParameters:URL queryParameters:URLParams];
+
+    NSMutableURLRequest* request = [self buildRequest:URL method:@"POST"];
+    
+    NSURLSessionDataTask* task = [[self getSession] dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+        
+    }];
+    [task resume];
 }
 
 - (void)registerCard:(void (^)(NSDictionary *response, NSError* error)) completionHandler
@@ -50,8 +69,11 @@
                                 @"cardNumber": self.cardInfo.cardNumber,};
     
     URL = [MPAPIClient NSURLByAppendingQueryParameters:URL queryParameters:URLParams];
+    
     NSMutableURLRequest* request = [NSMutableURLRequest requestWithURL:URL];
     request.HTTPMethod = @"POST";
+    
+    
     
     NSURLSessionDataTask* task = [[self getSession] dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
         
@@ -205,6 +227,15 @@
     sessionConfig.timeoutIntervalForRequest = 60.0;
     sessionConfig.timeoutIntervalForResource = 60.0;
     return [NSURLSession sessionWithConfiguration:sessionConfig delegate:nil delegateQueue:nil];
+}
+
+/**
+ Build request from url and method
+ */
+- (NSMutableURLRequest *) buildRequest:(NSURL *) url method:(NSString *) method  {
+    NSMutableURLRequest* request = [NSMutableURLRequest requestWithURL:url];
+    [request setHTTPMethod:method];
+    return request;
 }
 
 
