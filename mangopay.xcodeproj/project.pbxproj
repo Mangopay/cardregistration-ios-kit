@@ -22,6 +22,8 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		17230B101D1AED3B00476A4F /* mangopayTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 17230B0F1D1AED3B00476A4F /* mangopayTests.m */; };
+		17230B121D1AED3B00476A4F /* libmangopay.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1CD169041C6A23550026FB82 /* libmangopay.a */; };
 		1C2F65AC1C74F36200A28808 /* MPAPIClient.h in Headers */ = {isa = PBXBuildFile; fileRef = 1C2F65AA1C74F36200A28808 /* MPAPIClient.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1C2F65AD1C74F36200A28808 /* MPAPIClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C2F65AB1C74F36200A28808 /* MPAPIClient.m */; };
 		1CD169111C6A23BE0026FB82 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1CD169101C6A23BE0026FB82 /* UIKit.framework */; };
@@ -33,6 +35,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		17230B131D1AED3B00476A4F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1CD168FC1C6A23550026FB82 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 1CD169031C6A23550026FB82;
+			remoteInfo = mangopay;
+		};
 		1C6FD51F1C6D322A00B2B64C /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 1CD168FC1C6A23550026FB82 /* Project object */;
@@ -55,6 +64,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		17230B0D1D1AED3B00476A4F /* mangopayTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = mangopayTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		17230B0F1D1AED3B00476A4F /* mangopayTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = mangopayTests.m; sourceTree = "<group>"; };
+		17230B111D1AED3B00476A4F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1C2F65AA1C74F36200A28808 /* MPAPIClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPAPIClient.h; sourceTree = "<group>"; };
 		1C2F65AB1C74F36200A28808 /* MPAPIClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPAPIClient.m; sourceTree = "<group>"; };
 		1CD169041C6A23550026FB82 /* libmangopay.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libmangopay.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -67,6 +79,14 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		17230B0A1D1AED3B00476A4F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				17230B121D1AED3B00476A4F /* libmangopay.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		1CD169011C6A23550026FB82 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -78,10 +98,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		17230B0E1D1AED3B00476A4F /* mangopayTests */ = {
+			isa = PBXGroup;
+			children = (
+				17230B0F1D1AED3B00476A4F /* mangopayTests.m */,
+				17230B111D1AED3B00476A4F /* Info.plist */,
+			);
+			path = mangopayTests;
+			sourceTree = "<group>";
+		};
 		1CD168FB1C6A23550026FB82 = {
 			isa = PBXGroup;
 			children = (
 				1CD169061C6A23550026FB82 /* mangopay */,
+				17230B0E1D1AED3B00476A4F /* mangopayTests */,
 				1CD169141C6A25200026FB82 /* Frameworks */,
 				1CD169051C6A23550026FB82 /* Products */,
 			);
@@ -91,6 +121,7 @@
 			isa = PBXGroup;
 			children = (
 				1CD169041C6A23550026FB82 /* libmangopay.a */,
+				17230B0D1D1AED3B00476A4F /* mangopayTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -134,6 +165,24 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		17230B0C1D1AED3B00476A4F /* mangopayTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 17230B171D1AED3B00476A4F /* Build configuration list for PBXNativeTarget "mangopayTests" */;
+			buildPhases = (
+				17230B091D1AED3B00476A4F /* Sources */,
+				17230B0A1D1AED3B00476A4F /* Frameworks */,
+				17230B0B1D1AED3B00476A4F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				17230B141D1AED3B00476A4F /* PBXTargetDependency */,
+			);
+			name = mangopayTests;
+			productName = mangopayTests;
+			productReference = 17230B0D1D1AED3B00476A4F /* mangopayTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		1CD169031C6A23550026FB82 /* mangopay */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1CD1690D1C6A23550026FB82 /* Build configuration list for PBXNativeTarget "mangopay" */;
@@ -162,6 +211,9 @@
 				LastUpgradeCheck = 0720;
 				ORGANIZATIONNAME = mangopay;
 				TargetAttributes = {
+					17230B0C1D1AED3B00476A4F = {
+						CreatedOnToolsVersion = 7.3.1;
+					};
 					1C6FD51B1C6D322100B2B64C = {
 						CreatedOnToolsVersion = 7.3;
 					};
@@ -184,9 +236,20 @@
 			targets = (
 				1CD169031C6A23550026FB82 /* mangopay */,
 				1C6FD51B1C6D322100B2B64C /* Framework */,
+				17230B0C1D1AED3B00476A4F /* mangopayTests */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		17230B0B1D1AED3B00476A4F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
 		1C6FD51A1C6D300100B2B64C /* Build Framework */ = {
@@ -220,6 +283,14 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		17230B091D1AED3B00476A4F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				17230B101D1AED3B00476A4F /* mangopayTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		1CD169001C6A23550026FB82 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -233,6 +304,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		17230B141D1AED3B00476A4F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 1CD169031C6A23550026FB82 /* mangopay */;
+			targetProxy = 17230B131D1AED3B00476A4F /* PBXContainerItemProxy */;
+		};
 		1C6FD5201C6D322A00B2B64C /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 1CD169031C6A23550026FB82 /* mangopay */;
@@ -241,6 +317,30 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		17230B151D1AED3B00476A4F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				INFOPLIST_FILE = mangopayTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.mangopay.mangopayTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		17230B161D1AED3B00476A4F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				INFOPLIST_FILE = mangopayTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.mangopay.mangopayTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 		1C6FD51D1C6D322100B2B64C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -360,6 +460,14 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		17230B171D1AED3B00476A4F /* Build configuration list for PBXNativeTarget "mangopayTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				17230B151D1AED3B00476A4F /* Debug */,
+				17230B161D1AED3B00476A4F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 		1C6FD51C1C6D322100B2B64C /* Build configuration list for PBXAggregateTarget "Framework" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

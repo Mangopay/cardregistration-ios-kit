@@ -10,6 +10,7 @@
 @interface MPAPIClient ()
 @property (nonatomic, strong) MPCardInfoObject* cardInfo;
 @property (nonatomic, strong) MPCardApiObject* cardAPI;
+- (NSURLSession *) getSession;
 @end
 
 @implementation MPAPIClient
@@ -31,11 +32,12 @@
     [self.cardInfo setCardCvx:cardCvx];
 }
 
+- (void)getRegisterData:(void (^)(NSDictionary *, NSError *)) completionHandler {
+    
+}
+
 - (void)registerCard:(void (^)(NSDictionary *response, NSError* error)) completionHandler
 {
-    NSURLSessionConfiguration* sessionConfig = [NSURLSessionConfiguration defaultSessionConfiguration];
-    sessionConfig.timeoutIntervalForRequest = 60.0;
-    NSURLSession* session = [NSURLSession sessionWithConfiguration:sessionConfig delegate:nil delegateQueue:nil];
     
     NSURL* URL = [NSURL URLWithString:self.cardAPI.cardRegistrationURL];
     NSDictionary* URLParams = @{
@@ -51,7 +53,7 @@
     NSMutableURLRequest* request = [NSMutableURLRequest requestWithURL:URL];
     request.HTTPMethod = @"POST";
     
-    NSURLSessionDataTask* task = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+    NSURLSessionDataTask* task = [[self getSession] dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
         
         if (error == nil) {
             if (data) {
@@ -103,12 +105,8 @@
     [task resume];
 }
 
-- (void)sendRegistrationData:(NSString*)registrationData completionHandler:(void (^)(NSDictionary *responseDictionary, NSError* error)) completionHandler
-{
-    NSURLSessionConfiguration* sessionConfig = [NSURLSessionConfiguration defaultSessionConfiguration];
-    sessionConfig.timeoutIntervalForRequest = 60.0;
-    NSURLSession* session = [NSURLSession sessionWithConfiguration:sessionConfig delegate:nil delegateQueue:nil];
-
+- (void)sendRegistrationData:(NSString*)registrationData completionHandler:(void (^)(NSDictionary *responseDictionary, NSError* error)) completionHandler {
+    
     NSString* URLString = [NSString stringWithFormat:@"%@/v2/%@/CardRegistrations/%@",
                            self.cardAPI.baseURL,
                            self.cardAPI.clientId,
@@ -122,7 +120,7 @@
     request.HTTPMethod = @"POST";
     request.HTTPBody = [[MPAPIClient NSStringFromQueryParameters:bodyParameters] dataUsingEncoding:NSUTF8StringEncoding];
 
-    NSURLSessionDataTask* task = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+    NSURLSessionDataTask* task = [[self getSession]  dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
         
         if (error == nil) {
             NSDictionary* responseObject = [MPAPIClient objectFromJSONdata:data];
@@ -198,5 +196,16 @@
     
     return nil;
 }
+
+/**
+ Get a NSURLSession from default config
+ */
+- (NSURLSession *) getSession {
+    NSURLSessionConfiguration* sessionConfig = [NSURLSessionConfiguration defaultSessionConfiguration];
+    sessionConfig.timeoutIntervalForRequest = 60.0;
+    sessionConfig.timeoutIntervalForResource = 60.0;
+    return [NSURLSession sessionWithConfiguration:sessionConfig delegate:nil delegateQueue:nil];
+}
+
 
 @end
