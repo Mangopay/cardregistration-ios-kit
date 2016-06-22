@@ -3,7 +3,8 @@
 //  mangopay
 //
 #import <UIKit/UIKit.h>
-#import "MPAPIClient.h"
+
+#import <mangopay/MPAPIClient.h>
 
 
 //! Project version number for Mangopay.
