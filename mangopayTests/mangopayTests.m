@@ -13,6 +13,7 @@ static NSString * const serverURL = @"http://demo-mangopay.rhcloud.com/card-regi
 
 @interface mangopayTests : XCTestCase
 @property (nonatomic, strong) MPAPIClient *mangopayClient;
+@property XCTestExpectation *serverRespondExpectation;
 - (void)generateCardRegistration:(void (^)(NSDictionary *responseDictionary, NSHTTPURLResponse *httpResp, NSError* error)) completionHandler;
 @end
 
@@ -36,10 +37,42 @@ static NSString * const serverURL = @"http://demo-mangopay.rhcloud.com/card-regi
 
 - (void)testRegisterCardData {
     [self generateCardRegistration:^(NSDictionary *responseObject, NSHTTPURLResponse *httpResp, NSError* error) {
-        XCTAssertNil(error);
-        XCTAssertFalse(httpResp.statusCode != 200);
-        
+        self.serverRespondExpectation = [self expectationWithDescription:@"generateCardRegistartion"];
+        [self expectedGenerateCardRegistartion:responseObject withResponse:httpResp andError:error];
     }];
+    [self waitForExpectationsWithTimeout:120 handler:^(NSError *error) {
+        if (error) {
+            NSLog(@"Server Timeout Error: %@", error);
+        }
+    }];
+}
+
+- (void)expectedGenerateCardRegistartion:(NSDictionary *) responseObject withResponse:(NSHTTPURLResponse *) httpResp andError:(NSError *) error {
+    [self.serverRespondExpectation fulfill];
+    XCTAssertNil(error);
+    XCTAssertFalse(httpResp.statusCode != 200);
+    // initiate MPAPIClient with received cardObject
+    self.mangopayClient = [[MPAPIClient alloc] initWithCard:responseObject];
+    XCTAssertNotNil(self.mangopayClient);
+    // collect card info from the user
+    [self.mangopayClient appendCardInfo:@"XXXXXXXXXXXXXXXX" cardExpirationDate:@"XXXX" cardCvx:@"XXX"];
+    self.serverRespondExpectation = [self expectationWithDescription:@"registerCardData"];
+    [self.mangopayClient registerCardData:^(NSString *data, NSError *error) {
+        [self expectedRegisterCardData:data orError:error];
+    }];
+    [self waitForExpectationsWithTimeout:120 handler:^(NSError *error) {
+        if (error) {
+            NSLog(@"Server Timeout Error: %@", error);
+        }
+    }];
+}
+
+- (void)expectedRegisterCardData:(NSString *)data orError:(NSError *) error {
+    [self.serverRespondExpectation fulfill];
+    NSLog(@"### Data: %@", data);
+    NSLog(@"### Error: %@", error);
+    XCTAssertNotNil(data);
+    XCTAssertNil(error);
 }
 
 - (void)generateCardRegistration:(void (^)(NSDictionary *responseDictionary, NSHTTPURLResponse *httpResp, NSError* error)) completionHandler {

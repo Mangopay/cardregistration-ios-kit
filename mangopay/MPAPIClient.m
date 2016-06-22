@@ -40,7 +40,7 @@
         if (error) {
             completionHandler(nil, error);
         } else {
-            NSLog(@"No error");
+            completionHandler(@"No error", nil);
         }
     }];
     [task resume];
