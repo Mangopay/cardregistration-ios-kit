@@ -10,7 +10,7 @@
 - (instancetype)initWithCard:(NSDictionary*)infoObject;
 - (void)appendCardInfo:(NSString*)cardNumber cardExpirationDate:(NSString*)cardExpirationDate cardCvx:(NSString*)cardCvx;
 - (void)registerCard:(void (^)(NSDictionary *response, NSError* error)) completionHandler;
-
+- (void)registerCardData:(void (^)(NSString *, NSError *)) completionHandler;
 // UTILS
 + (NSString*)NSStringFromQueryParameters:(NSDictionary*)queryParameters;
 + (NSURL*)NSURLByAppendingQueryParameters:(NSURL*)URL  queryParameters:(NSDictionary*)queryParameters;

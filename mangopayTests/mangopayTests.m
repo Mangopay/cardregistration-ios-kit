@@ -7,9 +7,13 @@
 //
 
 #import <XCTest/XCTest.h>
+#import <mangopay/mangopay.h>
+
+static NSString * const serverURL = @"http://demo-mangopay.rhcloud.com/card-registration";
 
 @interface mangopayTests : XCTestCase
-
+@property (nonatomic, strong) MPAPIClient *mangopayClient;
+- (void)generateCardRegistration:(void (^)(NSDictionary *responseDictionary, NSHTTPURLResponse *httpResp, NSError* error)) completionHandler;
 @end
 
 @implementation mangopayTests
@@ -27,13 +31,48 @@
 - (void)testExample {
     // This is an example of a functional test case.
     // Use XCTAssert and related functions to verify your tests produce the correct results.
+    XCTAssertTrue(true);
 }
 
-- (void)testPerformanceExample {
-    // This is an example of a performance test case.
-    [self measureBlock:^{
-        // Put the code you want to measure the time of here.
+- (void)testRegisterCardData {
+    [self generateCardRegistration:^(NSDictionary *responseObject, NSHTTPURLResponse *httpResp, NSError* error) {
+        XCTAssertNil(error);
+        XCTAssertFalse(httpResp.statusCode != 200);
+        
     }];
 }
+
+- (void)generateCardRegistration:(void (^)(NSDictionary *responseDictionary, NSHTTPURLResponse *httpResp, NSError* error)) completionHandler {
+    NSURLSessionConfiguration* sessionConfig = [NSURLSessionConfiguration defaultSessionConfiguration];
+    sessionConfig.timeoutIntervalForRequest = 60.0;
+    NSURLSession* session = [NSURLSession sessionWithConfiguration:sessionConfig delegate:nil delegateQueue:nil];
+    NSURL* URL = [NSURL URLWithString:serverURL];
+    NSMutableURLRequest* request = [NSMutableURLRequest requestWithURL:URL];
+    request.HTTPMethod = @"GET";
+    NSURLSessionDataTask* task = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+        if (error == nil) { // Success
+            NSHTTPURLResponse *httpResp = (NSHTTPURLResponse*) response;
+            if (httpResp.statusCode == 200) {
+                if (data) {
+                    NSDictionary* responseObject = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:NULL];
+                    completionHandler(responseObject, httpResp, nil);
+                }
+                else {
+                    NSError *error = [NSError errorWithDomain:@"MP"
+                                                         code:[(NSHTTPURLResponse*)response statusCode]
+                                                     userInfo:@{NSLocalizedDescriptionKey: @"Invalid response data"}];
+                    completionHandler(nil, httpResp, error);
+                }
+            }
+            else
+                completionHandler(nil, httpResp, nil);
+        }
+        else
+            completionHandler(nil, nil, error);
+    }];
+    [task resume];
+}
+
+
 
 @end

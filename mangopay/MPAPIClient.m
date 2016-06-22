@@ -12,6 +12,7 @@
 @property (nonatomic, strong) MPCardApiObject* cardAPI;
 - (NSURLSession *) getSession;
 - (NSMutableURLRequest *) buildRequest:(NSURL *) url method:(NSString *) method;
+- (NSDictionary *) queryRegistrationDictionary;
 @end
 
 @implementation MPAPIClient
@@ -33,24 +34,14 @@
     [self.cardInfo setCardCvx:cardCvx];
 }
 
-- (void)getRegisterData:(void (^)(NSDictionary *, NSError *)) completionHandler {
-    
-    NSURL* URL = [NSURL URLWithString:self.cardAPI.cardRegistrationURL];
-    NSDictionary* URLParams = @{
-                                /* API info */
-                                @"accessKeyRef": self.cardAPI.accessKey,
-                                @"data": self.cardAPI.preregistrationData,
-                                /* Card info */
-                                @"cardExpirationDate": self.cardInfo.cardExpirationDate,
-                                @"cardCvx": self.cardInfo.cardCvx,
-                                @"cardNumber": self.cardInfo.cardNumber,};
-    
-    URL = [MPAPIClient NSURLByAppendingQueryParameters:URL queryParameters:URLParams];
-
-    NSMutableURLRequest* request = [self buildRequest:URL method:@"POST"];
-    
+- (void)registerCardData:(void (^)(NSString *, NSError *)) completionHandler {
+    NSMutableURLRequest* request = [self buildRequest:[self buildCardRegistrationUrl] method:@"POST"];
     NSURLSessionDataTask* task = [[self getSession] dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-        
+        if (error) {
+            completionHandler(nil, error);
+        } else {
+            NSLog(@"No error");
+        }
     }];
     [task resume];
 }
@@ -220,7 +211,7 @@
 }
 
 /**
- Get a NSURLSession from default config
+ * Get a NSURLSession from default config
  */
 - (NSURLSession *) getSession {
     NSURLSessionConfiguration* sessionConfig = [NSURLSessionConfiguration defaultSessionConfiguration];
@@ -230,12 +221,35 @@
 }
 
 /**
- Build request from url and method
+ * Build request from url and method
  */
 - (NSMutableURLRequest *) buildRequest:(NSURL *) url method:(NSString *) method  {
     NSMutableURLRequest* request = [NSMutableURLRequest requestWithURL:url];
     [request setHTTPMethod:method];
     return request;
+}
+
+/**
+ * Query registration dictionary
+ */
+- (NSDictionary *) queryRegistrationDictionary {
+    NSMutableDictionary *dictionary = [NSMutableDictionary new];
+    /* API info */
+    [dictionary setValue:self.cardAPI.accessKey forKey:@"accessKeyRef"];
+    [dictionary setValue:self.cardAPI.preregistrationData forKey:@"data"];
+    /* Card info */
+    [dictionary setValue:self.cardInfo.cardExpirationDate forKey:@"cardExpirationDate"];
+    [dictionary setValue:self.cardInfo.cardCvx forKey:@"cardCvx"];
+    [dictionary setValue:self.cardInfo.cardNumber forKey:@"cardNumber"];
+    return [dictionary copy];
+}
+
+/**
+ * Build card registration url
+ * @return A new NSURL.
+ */
+-(NSURL *) buildCardRegistrationUrl {
+    return [MPAPIClient NSURLByAppendingQueryParameters:[NSURL URLWithString:self.cardAPI.cardRegistrationURL] queryParameters:[self queryRegistrationDictionary]];
 }
 
 
