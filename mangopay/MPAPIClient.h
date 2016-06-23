@@ -15,5 +15,5 @@
 + (NSString*)NSStringFromQueryParameters:(NSDictionary*)queryParameters;
 + (NSURL*)NSURLByAppendingQueryParameters:(NSURL*)URL  queryParameters:(NSDictionary*)queryParameters;
 + (NSDictionary*)objectFromJSONdata:(NSData*)data;
-
++ (NSString *)utf8StringFromData:(NSData *) data;
 @end

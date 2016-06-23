@@ -37,85 +37,38 @@
 - (void)registerCardData:(void (^)(NSString *, NSError *)) completionHandler {
     NSMutableURLRequest* request = [self buildRequest:[self buildCardRegistrationUrl] method:@"POST"];
     NSURLSessionDataTask* task = [[self getSession] dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+        NSString *responseString = [MPAPIClient utf8StringFromData:data];
         if (error) {
-            completionHandler(nil, error);
+            completionHandler(nil,  error);
+        } else if (responseString) {
+            completionHandler( responseString, error);
         } else {
-            completionHandler(@"No error", nil);
+            completionHandler(nil, [self responseError:response]);
         }
     }];
     [task resume];
 }
 
-- (void)registerCard:(void (^)(NSDictionary *response, NSError* error)) completionHandler
-{
-    
-    NSURL* URL = [NSURL URLWithString:self.cardAPI.cardRegistrationURL];
-    NSDictionary* URLParams = @{
-                                /* API info */
-                                @"accessKeyRef": self.cardAPI.accessKey,
-                                @"data": self.cardAPI.preregistrationData,
-                                /* Card info */
-                                @"cardExpirationDate": self.cardInfo.cardExpirationDate,
-                                @"cardCvx": self.cardInfo.cardCvx,
-                                @"cardNumber": self.cardInfo.cardNumber,};
-    
-    URL = [MPAPIClient NSURLByAppendingQueryParameters:URL queryParameters:URLParams];
-    
-    NSMutableURLRequest* request = [NSMutableURLRequest requestWithURL:URL];
-    request.HTTPMethod = @"POST";
-    
-    
-    
-    NSURLSessionDataTask* task = [[self getSession] dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-        
-        if (error == nil) {
-            if (data) {
-        
-                NSString *responseString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-                if (responseString) {
-
-                    if ([responseString rangeOfString:@"errorCode"].location != NSNotFound) {
-                        
-                        NSString* errorString = [responseString stringByReplacingOccurrencesOfString:@"errorCode=" withString:@""];
-                        NSError *error = [NSError errorWithDomain:@"MP"
-                                                             code:[errorString integerValue]
-                                                         userInfo:@{NSLocalizedDescriptionKey: responseString}];
-                        completionHandler(nil, error);
-                    }
-                    else {
-                        
-                        [self sendRegistrationData:responseString
-                                 completionHandler:^(NSDictionary *responseDictionary, NSError* error) {
-
-                                if (error) {
-                                    completionHandler(nil, error);
-                                    return;
-                                }
-
-                                completionHandler(responseDictionary, error);
-                        }];
-                    }
-                }
-                else {
-                    NSError *error = [NSError errorWithDomain:@"MP"
-                                                         code:[(NSHTTPURLResponse*)response statusCode]
-                                                     userInfo:@{NSLocalizedDescriptionKey: @"Invalid response data"}];
-                    completionHandler(nil, error);
-                }
-            }
-            else {
-                NSError *error = [NSError errorWithDomain:@"MP"
-                                                     code:[(NSHTTPURLResponse*)response statusCode]
-                                                 userInfo:@{NSLocalizedDescriptionKey: @"Invalid response data"}];
-                completionHandler(nil, error);
-            }
-        }
-        else {
+- (void)registerCard:(void (^)(NSDictionary *response, NSError* error)) completionHandler {
+    [self registerCardData:^(NSString *responseString, NSError *error) {
+        if (error) {
             completionHandler(nil, error);
-            return;
+        } else {
+            if ([responseString rangeOfString:@"errorCode"].location != NSNotFound) {
+                NSString* errorString = [responseString stringByReplacingOccurrencesOfString:@"errorCode=" withString:@""];
+                NSError *error = [NSError errorWithDomain:@"MP" code:[errorString integerValue] userInfo:@{NSLocalizedDescriptionKey: responseString}];
+                completionHandler(nil, error);
+            } else {
+                [self sendRegistrationData:responseString completionHandler:^(NSDictionary *responseDictionary, NSError* error) {
+                    if (error) {
+                        completionHandler(nil, error);
+                    } else {
+                        completionHandler(responseDictionary, error);
+                    }
+                }];
+            }
         }
     }];
-    [task resume];
 }
 
 - (void)sendRegistrationData:(NSString*)registrationData completionHandler:(void (^)(NSDictionary *responseDictionary, NSError* error)) completionHandler {
@@ -250,6 +203,22 @@
  */
 -(NSURL *) buildCardRegistrationUrl {
     return [MPAPIClient NSURLByAppendingQueryParameters:[NSURL URLWithString:self.cardAPI.cardRegistrationURL] queryParameters:[self queryRegistrationDictionary]];
+}
+
+
++(NSString *) utf8StringFromData:(NSData *) data {
+    if (data) {
+        return [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+    } else {
+        return nil;
+    }
+}
+
+/**
+ Error from response
+ */
+-(NSError *) responseError:(NSURLResponse *) response {
+    return [NSError errorWithDomain:@"MP" code:[(NSHTTPURLResponse*)response statusCode] userInfo:@{NSLocalizedDescriptionKey: @"Invalid response data"}];
 }
 
 
