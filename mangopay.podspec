@@ -39,7 +39,7 @@ Pod::Spec.new do |s|
   #  Popular ones are 'MIT', 'BSD' and 'Apache License, Version 2.0'.
   #
 
-  s.license      = {:type => 'COMMERCIAL', :file => 'LICENSE'}
+  s.license      = {:type => 'MIT', :file => 'LICENSE'}
 
   # ――― Author Metadata  ――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
   #
@@ -51,7 +51,9 @@ Pod::Spec.new do |s|
   #  profile URL.
   #
 
-  s.author             = { "blackleg" => "blackleg@openaliasbox.org" }
+  #s.author             = { "MANGOPAY" => "" }
+  s.author             = "MANGOPAY"
+  s.social_media_url   = "http://twitter.com/mangopaydev"
 
   # ――― Platform Specifics ――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
   #
