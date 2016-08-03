@@ -16,8 +16,8 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "mangopay"
-  s.version      = "0.0.5"
-  s.summary      = "Mangopay Card Registration iOS Kit"
+  s.version      = "1.0.0"
+  s.summary      = "Mangopay iOS"
 
   # This description is used to generate tags and improve search results.
   #   * Think: What does it do? Why did you write it? What is the focus?
@@ -25,7 +25,7 @@ Pod::Spec.new do |s|
   #   * Write the description between the DESC delimiters below.
   #   * Finally, don't worry about the indent, CocoaPods strips it!
   s.description  = <<-DESC
-	A Framework with my utilities
+	Mangopay Card Registration iOS Kit
                    DESC
 
   s.homepage     = "https://www.mangopay.com"
@@ -39,7 +39,7 @@ Pod::Spec.new do |s|
   #  Popular ones are 'MIT', 'BSD' and 'Apache License, Version 2.0'.
   #
 
-  #s.license      = "MIT"
+  s.license      = {:type => 'MIT', :file => 'LICENSE'}
 
   # ――― Author Metadata  ――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
   #
@@ -51,7 +51,9 @@ Pod::Spec.new do |s|
   #  profile URL.
   #
 
-  s.author             = { "blackleg" => "blackleg@openaliasbox.org" }
+  #s.author             = { "MANGOPAY" => "" }
+  s.author             = "MANGOPAY"
+  s.social_media_url   = "http://twitter.com/mangopaydev"
 
   # ――― Platform Specifics ――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
   #
@@ -68,7 +70,7 @@ Pod::Spec.new do |s|
   #  Supports git, hg, bzr, svn and HTTP.
   #
 
-  s.source       = { :git => "https://github.com/peertopark/cardregistration-ios-kit.git", :branch => "master" }
+  s.source       = { :git => "https://github.com/Mangopay/cardregistration-ios-kit.git", :tag => '1.0.0' }
 
 
   # ――― Source Code ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
