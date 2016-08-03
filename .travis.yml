@@ -1,0 +1,3 @@
+language: objective-c
+xcode_project: mangopay.xcodeproj
+xcode_scheme: mangopayTests
