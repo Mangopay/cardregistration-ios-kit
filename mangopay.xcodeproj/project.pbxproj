@@ -126,8 +126,8 @@
 			files = (
 				1CD169131C6A24420026FB82 /* mangopay.h in Headers */,
 				1C2F65AC1C74F36200A28808 /* MPAPIClient.h in Headers */,
-				1CE961031C8DC1D6003A88B7 /* MPCardApiObject.h in Headers */,
 				1CE961051C8DC1D6003A88B7 /* MPCardInfoObject.h in Headers */,
+				1CE961031C8DC1D6003A88B7 /* MPCardApiObject.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
