@@ -1,4 +1,4 @@
-# MANGOPAY iOS card registration kit
+# MANGOPAY iOS card registration kit [![Build Status](https://travis-ci.org/Mangopay/cardregistration-ios-kit.svg?branch=master)](https://travis-ci.org/Mangopay/cardregistration-ios-kit)
 
 ## Configuration
 
