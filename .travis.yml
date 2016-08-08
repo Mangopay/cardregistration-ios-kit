@@ -1,0 +1,5 @@
+language: objective-c
+osx_image: xcode6.4
+xcode_project: mangopay.xcodeproj
+xcode_scheme: mangopay
+
