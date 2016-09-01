@@ -106,7 +106,7 @@
 - (void)sendRegistrationData:(NSString*)registrationData completionHandler:(void (^)(NSDictionary *responseDictionary, NSError* error)) completionHandler
 {
     NSURLSessionConfiguration* sessionConfig = [NSURLSessionConfiguration defaultSessionConfiguration];
-    sessionConfig.timeoutIntervalForRequest = 60.0;
+    sessionConfig.timeoutIntervalForRequest = 30.0;
     NSURLSession* session = [NSURLSession sessionWithConfiguration:sessionConfig delegate:nil delegateQueue:nil];
 
     NSString* URLString = [NSString stringWithFormat:@"%@/v2/%@/CardRegistrations/%@",
@@ -167,11 +167,18 @@
 + (NSString*)NSStringFromQueryParameters:(NSDictionary*)queryParameters {
     NSMutableArray* parts = [NSMutableArray array];
     [queryParameters enumerateKeysAndObjectsUsingBlock:^(id key, id value, BOOL *stop) {
-        NSString *part = [NSString stringWithFormat: @"%@=%@",
-                          [key stringByAddingPercentEscapesUsingEncoding: NSUTF8StringEncoding],
-                          [value stringByAddingPercentEscapesUsingEncoding: NSUTF8StringEncoding]
-                          ];
-        [parts addObject:part];
+        
+        if ([key isKindOfClass:[NSString class]] && [value isKindOfClass:[NSString class]]) {
+            NSString *part = [NSString stringWithFormat: @"%@=%@",
+                              [key stringByAddingPercentEscapesUsingEncoding: NSUTF8StringEncoding],
+                              [value stringByAddingPercentEscapesUsingEncoding: NSUTF8StringEncoding]
+                              ];
+            [parts addObject:part];
+        }
+        else {
+            NSLog(@"ERROR Invalid parameters: %@=%@. Make sure you use strings.", key, value);
+        }
+        
     }];
     return [parts componentsJoinedByString: @"&"];
 }
