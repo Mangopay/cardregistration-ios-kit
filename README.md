@@ -131,9 +131,9 @@ self.mangopayClient = [[MPAPIClient alloc] initWithCard:responseObject];
 
 ```objective-c
 NSString* cardNumber = @"XXXXXXXXXXXXXXXX"; 
-NSString* cardExpirationMonth = @"10"; // ex: @"10"
-NSString* cardExpirationYear = @"16"; // ex: @"16"
-NSString* cardCvx = @"123"; // ex: @"123"
+NSString* cardExpirationMonth = @"XX"; // ex: @"10"
+NSString* cardExpirationYear = @"XX"; // ex: @"16"
+NSString* cardCvx = @"XXX"; // ex: @"123"
 
 [self.mangopayClient appendCardInfo:@"XXXXXXXXXXXXXXXX" cardExpirationDate:@"XXXX" cardCvx:@"XXX"];
 ```
