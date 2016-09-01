@@ -39,9 +39,9 @@ static NSString * const serverURL = @"http://demo-mangopay.rhcloud.com/card-regi
     
         // collect card info from the user
         NSString* cardNumber = @"XXXXXXXXXXXXXXXX"; 
-        NSString* cardExpirationMonth = @"10"; // ex: @"10"
-        NSString* cardExpirationYear = @"16"; // ex: @"16"
-        NSString* cardCvx = @"123"; // ex: @"123"
+        NSString* cardExpirationMonth = @"XX"; // ex: @"10"
+        NSString* cardExpirationYear = @"XX"; // ex: @"16"
+        NSString* cardCvx = @"XXX"; // ex: @"123"
         
         [self.mangopayClient appendCardInfo: cardNumber
                          cardExpirationDate: [NSString stringWithFormat:@"%@%@", cardExpirationMonth, cardExpirationYear]
