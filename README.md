@@ -4,7 +4,7 @@
 
 ### Configuring App Transport Security Exceptions in iOS 9
 
-Open app's .plist Source Code andd add
+Open app's .plist as Source Code and add
 
 ```xml
 <key>NSAppTransportSecurity</key>
@@ -79,6 +79,12 @@ Open app's .plist Source Code andd add
 
 ```objective-c
 pod 'mangopay', '1.0'
+```
+
+* Import header:
+
+```objective-c
+#import <mangopay/mangopay.h>
 ```
 
 ### Manual Import library
