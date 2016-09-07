@@ -73,7 +73,7 @@
 
 - (void)sendRegistrationData:(NSString*)registrationData completionHandler:(void (^)(NSDictionary *responseDictionary, NSError* error)) completionHandler {
 
-    NSString* URLString = [NSString stringWithFormat:@"%@/v2/%@/CardRegistrations/%@",
+    NSString* URLString = [NSString stringWithFormat:@"%@/v2.01/%@/CardRegistrations/%@",
                            self.cardAPI.baseURL,
                            self.cardAPI.clientId,
                            self.cardAPI.cardPreregistrationId];
