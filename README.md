@@ -3,6 +3,9 @@
 ## Configuration
 
 ### Step 1 - Configuring App Transport Security Exceptions in iOS 9
+
+Open app's .plist Source Code andd add
+
 ```xml
 <key>NSAppTransportSecurity</key>
 <dict>
@@ -77,6 +80,13 @@
 
 ```objective-c
 #import <mangopay/mangopay.h>
+```
+
+### Cocoapods (recommended)
+* Add to you Podfile
+
+```objective-c
+pod 'mangopay', '1.0'
 ```
 
 ### Step 3 - Using the MANGOPAY card registration API
