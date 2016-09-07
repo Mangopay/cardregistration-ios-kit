@@ -2,7 +2,7 @@
 
 ## Configuration
 
-### Step 1 - Configuring App Transport Security Exceptions in iOS 9
+### Configuring App Transport Security Exceptions in iOS 9
 
 Open app's .plist Source Code andd add
 
@@ -74,14 +74,6 @@ Open app's .plist Source Code andd add
 </dict>
 ```
 
-### Step 2 - Import library
-* Import `mangopay.framework` into your project (make sure "Copy items if needed" is selected)
-* Import header:
-
-```objective-c
-#import <mangopay/mangopay.h>
-```
-
 ### Cocoapods (recommended)
 * Add to you Podfile
 
@@ -89,7 +81,15 @@ Open app's .plist Source Code andd add
 pod 'mangopay', '1.0'
 ```
 
-### Step 3 - Using the MANGOPAY card registration API
+### Manual Import library
+* Import `mangopay.framework` into your project (make sure "Copy items if needed" is selected)
+* Import header:
+
+```objective-c
+#import <mangopay/mangopay.h>
+```
+
+### Using the MANGOPAY card registration API
 
 **Important:**
 * Because the MANGOPAY Passphrase cannot be set in the application due to obviously security reasons, this requires an own server instance which has this sensitive information kept private. Using this library you are able to tokenize a card and send it to your server, and then you are able to charge the customer. The flow is described in [this diagram](https://docs.mangopay.com/api-references/payins/payindirectcard).
@@ -134,7 +134,7 @@ You can then make use of the information received from your webapp:
 This object is required to instantiate the MAPIClient: 
 
 ```objective-c
-self.mangopayClient = [[MPAPIClient alloc] initWithCard:responseObject];
+self.mangopayClient = [[MPAPIClient alloc] initWithCard:cardResponseObject];
 ```
 
 ##### Collect card info from the user and add it to mangopayClient
