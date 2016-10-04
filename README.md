@@ -78,7 +78,7 @@ Open app's .plist as Source Code and add
 * Add to you Podfile
 
 ```objective-c
-pod 'mangopay', '1.0'
+pod 'mangopay'
 ```
 
 * Import header:
