@@ -74,7 +74,7 @@ Open app's .plist as Source Code and add
 </dict>
 ```
 
-Please note that ff your application attempts to connect to any HTTP server (yourserver.com) that doesn't support the latest SSL technology (TLSv1.2), your connections will fail.
+Please note that if your application attempts to connect to any HTTP server (yourserver.com) that doesn't support the latest SSL technology (TLSv1.2), your connections will fail.
 
 ### Cocoapods (recommended)
 * Add to you Podfile
