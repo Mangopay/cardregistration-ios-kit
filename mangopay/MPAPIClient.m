@@ -7,6 +7,8 @@
 #import "MPCardInfoObject.h"
 #import "MPCardApiObject.h"
 
+#define sdkVersion @"1.0.2"
+
 @interface MPAPIClient ()
 @property (nonatomic, strong) MPCardInfoObject* cardInfo;
 @property (nonatomic, strong) MPCardApiObject* cardAPI;
@@ -85,7 +87,8 @@
     NSMutableURLRequest* request = [NSMutableURLRequest requestWithURL:URL];
     request.HTTPMethod = @"POST";
     request.HTTPBody = [[MPAPIClient NSStringFromQueryParameters:bodyParameters] dataUsingEncoding:NSUTF8StringEncoding];
-
+    [request setValue:sdkVersion forHTTPHeaderField:@"User-Agent"];
+    
     NSURLSessionDataTask* task = [[self getSession]  dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
         
         if (error == nil) {
