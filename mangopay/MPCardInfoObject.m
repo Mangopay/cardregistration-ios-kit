@@ -14,7 +14,7 @@
     self = [super init];
     if (self)
     {
-        self.cardType = [dict objectForKey:@"cardType"];
+        self.cardType = [dict objectForKey:@"CardType"];
     }
     return self;
 }

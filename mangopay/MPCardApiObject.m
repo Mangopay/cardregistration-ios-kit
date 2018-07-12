@@ -14,12 +14,12 @@
     self = [super init];
     if (self)
     {
-        self.cardRegistrationURL = [dict objectForKey:@"cardRegistrationURL"];
-        self.preregistrationData = [dict objectForKey:@"preregistrationData"];
-        self.accessKey = [dict objectForKey:@"accessKey"];
-        self.clientId = [dict objectForKey:@"clientId"];
-        self.baseURL = [dict objectForKey:@"baseURL"];
-        self.cardPreregistrationId = [dict objectForKey:@"cardPreregistrationId"];
+        self.cardRegistrationURL = [dict objectForKey:@"CardRegistrationURL"];
+        self.preregistrationData = [dict objectForKey:@"PreregistrationData"];
+        self.accessKey = [dict objectForKey:@"AccessKey"];
+        self.clientId = [dict objectForKey:@"ClientId"];
+        self.baseURL = [dict objectForKey:@"BaseURL"];
+        self.cardPreregistrationId = [dict objectForKey:@"Id"];
     }
     return self;
 }
