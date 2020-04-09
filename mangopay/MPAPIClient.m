@@ -38,6 +38,7 @@
 
 - (void)registerCardData:(void (^)(NSString *, NSError *)) completionHandler {
     NSMutableURLRequest* request = [self buildRequest:[self buildCardRegistrationUrl] method:@"POST"];
+    [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
     NSURLSessionDataTask* task = [[self getSession] dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
         NSString *responseString = [MPAPIClient utf8StringFromData:data];
         if (error) {
