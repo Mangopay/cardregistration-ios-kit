@@ -100,7 +100,7 @@
                 }
                 else {
                     NSMutableDictionary<NSErrorUserInfoKey, id> *userInfo = [[NSMutableDictionary alloc] init];
-                    NSString *message = responseObject[@"Message"];
+                    NSString *message = responseObject[@"ResultMessage"];
                     if (message) {
                         [userInfo setObject:message forKey:NSLocalizedDescriptionKey];
                     }
