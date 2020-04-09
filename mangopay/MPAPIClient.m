@@ -99,9 +99,14 @@
                     completionHandler(responseObject, nil);
                 }
                 else {
-                    NSError *error = [NSError errorWithDomain:@"MP"
-                                                           code:[(NSHTTPURLResponse*)response statusCode]
-                                                       userInfo:@{NSLocalizedDescriptionKey: responseObject[@"Message"]}];
+                    NSMutableDictionary<NSErrorUserInfoKey, id> *userInfo = [[NSMutableDictionary alloc] init];
+                    NSString *message = responseObject[@"Message"];
+                    if (message) {
+                        [userInfo setObject:message forKey:NSLocalizedDescriptionKey];
+                    }
+                    error = [NSError errorWithDomain:@"MP"
+                                                code:[(NSHTTPURLResponse*)response statusCode]
+                                            userInfo:userInfo];
                     completionHandler(responseObject, error);
                 }
             }
