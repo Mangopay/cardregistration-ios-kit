@@ -7,7 +7,6 @@ let package = Package(
     products: [
         .library(
             name: "mangopay",
-            type: .dynamic,
             targets: ["mangopay"]),
     ],
     targets: [
