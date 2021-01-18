@@ -100,8 +100,8 @@ pod 'mangopay'
 ### Using the MANGOPAY card registration API
 
 **Important:**
-* Because the MANGOPAY Passphrase cannot be set in the application due to obviously security reasons, this requires an own server instance which has this sensitive information kept private. Using this library you are able to tokenize a card and send it to your server, and then you are able to charge the customer. The flow is described in [this diagram](https://docs.mangopay.com/api-references/payins/payindirectcard).
-* The code examples below refer to the [demo app](/Mangopay/cardregistration-ios-kit/tree/master/MangopayDemoApp) included in this repo - you can either use this or just create your own controller if you prefer
+* Because the MANGOPAY Passphrase cannot be set in the application due to obviously security reasons, this requires an own server instance which has this sensitive information kept private. Using this library you are able to tokenize a card and send it to your server, and then you are able to charge the customer. The flow is described in [this diagram](https://docs.mangopay.com/endpoints/v2.01/cards#e177_the-card-registration-object).
+* The code examples below refer to the [demo app](https://github.com/Mangopay/cardregistration-ios-kit/tree/master/MangopayDemoApp) included in this repo - you can either use this or just create your own controller if you prefer
  
 #### Usage:
 ##### Update your webapp
