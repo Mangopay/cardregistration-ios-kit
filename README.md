@@ -89,6 +89,13 @@ pod 'mangopay'
 #import <mangopay/mangopay.h>
 ```
 
+### Swift Package manager (SPM)
+
+- File > Swift Packages > Add Package Dependency
+- Add `https://github.com/Mangopay/cardregistration-ios-kit.git`
+- Select your preferred version to download
+
+
 ### Manual Import library
 * Import `mangopay.framework` into your project (make sure "Copy items if needed" is selected)
 * Import header:
