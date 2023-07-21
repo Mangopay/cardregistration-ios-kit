@@ -1,13 +1,12 @@
 # :warning: Deprecated
 
-This SDK is deprecated as of July 20, 2023 and will no longer be maintained or supported.
+This SDK is deprecated as of July 21, 2023 and will no longer be maintained or supported.
 
 We recommend upgrading to our new [Vault SDK for iOS](https://github.com/Mangopay/mangopay-ios-vault-sdk) instead. The new SDK provides the same functionality of [card registration flow](https://mangopay.com/docs/endpoints/direct-card-payins#card-registration-object), with Swift language support., better performance, and continued support.
 
-For details on upgrading from this SDK to the new Swift SDK, please visit the [integration guide](https://mangopay.com/docs/sdk/vault-ios) or [iOS Github repository](https://github.com/Mangopay/mangopay-ios-vault-sdk)
+For details on upgrading from this SDK to the new Swift SDK, please visit our [Vault SDK integration guide](https://mangopay.com/docs/sdk/vault-ios) or head to the new [iOS Vault SDK repository](https://github.com/Mangopay/mangopay-ios-vault-sdk)
 
 If you have any other questions around this deprecation, please reach out to our team via the [Hub](https://hub.mangopay.com/)
-
 
 # MANGOPAY iOS card registration kit [![Build Status](https://travis-ci.org/Mangopay/cardregistration-ios-kit.svg?branch=master)](https://travis-ci.org/Mangopay/cardregistration-ios-kit)
 
